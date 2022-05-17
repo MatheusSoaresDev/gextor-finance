@@ -11,6 +11,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
+        "lucascudo/laravel-pt-br-localization": "^1.2",
         "ramsey/uuid": "^4.3"
     },
     "require-dev": {

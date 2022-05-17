@@ -25,6 +25,7 @@
 
 <main class="form-signin w-100 m-auto">
     <form method="POST" action="{{ route('login') }}">
+        @csrf
         <!--<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
         <h1 class="h3 mb-3 fw-normal">Login</h1>
 
@@ -32,6 +33,7 @@
             <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email</label>
         </div>
+
         <div class="form-floating">
             <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Senha</label>

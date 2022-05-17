@@ -29,28 +29,41 @@
         <!--<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
         <h1 class="h3 mb-3 fw-normal">Cadastre-se</h1>
 
-        <div class="form-floating">
-            <input type="text" class="form-control" name="name" id="floatingEmail" placeholder="name@example.com">
-            <label for="floatingInput">Nome e sobrenome</label>
+        <div class="form-group" style="text-align: left;">
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Nome e sobrenome</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="validationCustom03" name="name" value="{{ old('name') }}">
+                <div class="invalid-feedback">
+                    @error('name'){{ $message }}@enderror
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Endereço de email</label>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="validationCustom03" name="email" value="{{ old('email') }}">
+                <div class="invalid-feedback">
+                    @error('email'){{ $message }}@enderror
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Senha</label>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="validationCustom03" name="password" value="{{ old('password') }}">
+                <div class="invalid-feedback">
+                    @error('password'){{ $message }}@enderror
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Confirmar Senha</label>
+                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="validationCustom03" name="password_confirmation" value="{{ old('password_confirmation') }}">
+                <div class="invalid-feedback">
+                    @error('password_confirmation'){{ $message }}@enderror
+                </div>
+            </div>
         </div>
 
-        <div class="form-floating">
-            <input type="email" class="form-control" name="email" id="floatingNome" placeholder="name@example.com" style="margin-bottom: -1px;">
-            <label for="floatingInput">Endereço de email</label>
-        </div>
-
-        <div class="form-floating">
-            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" style="margin-bottom: -1px;">
-            <label for="floatingPassword">Senha</label>
-        </div>
-
-        <div class="form-floating">
-            <input type="password" class="form-control" name="password_confirmation" id="floatingConfirmPassword" placeholder="Password">
-            <label for="floatingPassword">Confirmar Senha</label>
-        </div>
-
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastrar</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
     </form>
 </main>
