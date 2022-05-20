@@ -25,4 +25,13 @@ class DespesaRecorrenteController extends Controller
         }
         return redirect("home")->withErrors('Não foi possivel cadastrar a despesa!');
     }
+
+    public function delete(string $id)
+    {
+        $despesa = $this->despesaRecorrenteRepository->delete($id);
+        if(!$despesa){
+            return redirect("home")->withSuccess('Despesa removida com sucesso!');
+        }
+        return redirect("home")->withErrors('Não foi possivel remover a despesa!');
+    }
 }

@@ -16,13 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('/', function (){ return view('auth.login'); });
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/despesa/fixa', [DespesaRecorrenteController::class, 'index'])->name('despesaRecorrente');
-    Route::post('/despesa/fixa', [DespesaRecorrenteController::class, 'create'])->name('despesaRecorrente');
+
+    Route::get('/despesa/recorrente', [DespesaRecorrenteController::class, 'index'])->name('despesaRecorrente');
+    Route::post('/despesa/recorrente', [DespesaRecorrenteController::class, 'create'])->name('despesaRecorrente');
+    Route::DELETE('/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'delete'])->name('deleteDespesaRecorrente');
+
     //Route::get('/despesa/parcelada', [DespesaParceladaController::class, 'index'])->name('despesaParcelada');
 });
 
-Route::get('/', function (){ return view('auth.login'); });
 

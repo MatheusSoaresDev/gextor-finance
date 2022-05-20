@@ -143,6 +143,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
-
+<script src="https://kit.fontawesome.com/c03cb6ad01.js" crossorigin="anonymous"></script>
 
 </html>
