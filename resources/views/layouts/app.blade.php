@@ -121,7 +121,7 @@
                     </ul>
                 </div>
             </div>
-            <main class="py-4" style="width: 100%; padding: 50px;">
+            <main class="py-4" style="width: 100%; padding: 50px; overflow-y: scroll;">
                 @yield('content')
             </main>
         </main>
@@ -143,6 +143,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
-<script src="https://kit.fontawesome.com/c03cb6ad01.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/8f5d4ecd14.js" crossorigin="anonymous"></script>
 
 </html>

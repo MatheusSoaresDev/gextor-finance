@@ -17,21 +17,29 @@ class DespesaRecorrenteController extends Controller
 
     public function create(CreateDespesaFixaRequest $request)
     {
-        $data = $request->except("_token");
+        $despesa = $this->despesaRecorrenteRepository->create($request->all());
+        return self::redirect($despesa, "cadastrar", "home");
+    }
 
-        $despesa = $this->despesaRecorrenteRepository->create($data);
-        if($despesa){
-            return redirect("home")->withSuccess('Despesa cadastrada com sucesso!');
-        }
-        return redirect("home")->withErrors('Não foi possivel cadastrar a despesa!');
+    public function update(Request $request)
+    {
+        $data = $request->only(['id', 'nome', 'valor', 'forma_pagamento', 'status', 'data', 'comentário']);
+        $despesa = $this->despesaRecorrenteRepository->update($data);
+
+        return self::redirect($despesa, "atualizar", "home");
     }
 
     public function delete(string $id)
     {
         $despesa = $this->despesaRecorrenteRepository->delete($id);
-        if(!$despesa){
-            return redirect("home")->withSuccess('Despesa removida com sucesso!');
+        return self::redirect($despesa, "excluir", "home");
+    }
+
+    private static function redirect($response, string $action, string $redirectPage)
+    {
+        if($response){
+            return redirect($redirectPage)->withSuccess("Despesa {$action} com sucesso!");
         }
-        return redirect("home")->withErrors('Não foi possivel remover a despesa!');
+        return redirect($redirectPage)->withErrors("Não foi {$action} a despesa!");
     }
 }

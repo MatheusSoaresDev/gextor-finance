@@ -4,17 +4,69 @@
 
     <div class="content">
         <h3 class=""> Dashboard </h3>
+        <small> {{ session('success') }} </small>
+        <small> {{ session('error') }} </small>
 
         <div class="row mt-4" style="--bs-gutter-x: 0;">
-            <div class="card mb-3" style="max-width: 340px;">
-                <div class="row g-0">
-                    <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
-                        <i class="fas fa-dollar-sign" style="font-size: 20px;"></i>
+            <div class="col-sm-3">
+                <div class="card mb-3" style="max-width: 340px;">
+                    <div class="row g-0">
+                        <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
+                            <i class="fa-solid fa-sack-dollar" style="font-size: 30px;"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                Receitas
+                                <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            Despesas Ativas
-                            <h5> R$ {{ $despesasRecorrentes->sum('valor') }} </h5>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card mb-3" style="max-width: 340px;">
+                    <div class="row g-0">
+                        <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
+                            <i class="fa-solid fa-repeat" style="font-size: 30px;"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                Despesas Recorrentes
+                                <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card mb-3" style="max-width: 340px;">
+                    <div class="row g-0">
+                        <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
+                            <i class="fa-solid fa-divide" style="font-size: 30px;"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                Despesas Anuais
+                                <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="card mb-3" style="max-width: 340px;">
+                    <div class="row g-0">
+                        <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
+                            <i class="fa-solid fa-credit-card" style="font-size: 30px;"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                Cartões de crédito
+                                <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,8 +126,8 @@
                         @foreach($despesasRecorrentes as $despesas)
                             <tr style="vertical-align:middle">
                                 <td><span class="name">{{ $despesas->nome }}</span></td>
-                                <td> {{ $despesas->forma_pagamento }} </td>
-                                <td> R$ {{ $despesas->valor }} </td>
+                                <td> {{ ucfirst($despesas->forma_pagamento) }} </td>
+                                <td> R$ {{ number_format($despesas->valor, 2, ',') }} </td>
                                 <td>
                                     @if($despesas->status == 1)
                                         <span class="badge text-bg-success">Pago</span>
@@ -87,7 +139,7 @@
                                     <form method="POST" action="{{ route('deleteDespesaRecorrente', $despesas->id) }}" onsubmit="return confirm('Tem certeza que deseja remover essa despesa?');">
                                         @method('DELETE')
                                         @csrf
-                                        <a data-toggle="tooltip" data-placement="top" title="Editar"><button type="button" class="btn btn-outline-primary btn-sm" onclick="editarDespesa({{ $despesas }});"><i class="fas fa-edit"></i></button></a>
+                                        <a data-toggle="tooltip" data-placement="top" title="Editar"><button type="button" class="btn btn-outline-primary btn-sm" onclick="editarDespesaRecorrenteModal({{ $despesas }});"><i class="fas fa-edit"></i></button></a>
                                         <a data-toggle="tooltip" data-placement="top" title="Excluir"><button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-minus-circle"></i></button></a>
                                     </form>
                                 </td>
@@ -177,7 +229,7 @@
 
                         <div class="mb-3">
                             <label for="valor_despesa_recorrente" class="form-label">Valor</label>
-                            <input type="text" id="valor_despesa_recorrente" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="000.000.000.000.000,00" data-mask-reverse="true" required>
+                            <input type="text" id="valor_despesa_recorrente" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="000.000.000.000.000.00" data-mask-reverse="true" required>
                         </div>
 
                         <div class="mb-3">
@@ -207,6 +259,88 @@
         </div>
     </div>
 
+    <div class="modal fade" id="editardespesarecorrentemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="smallmodalLabel">Editar despesa do mês</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="{{ route('despesaRecorrente') }}" id="EditarDespesaRecorrente">
+                    <div class="modal-body">
+                        @csrf
+                        @method('put')
+
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="dadosEditar-tab" data-bs-toggle="pill" data-bs-target="#dadosEditar" type="button" role="tab" aria-controls="dadosEditar" aria-selected="true">Dados</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="arquivos-tab" data-bs-toggle="pill" data-bs-target="#arquivos" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="dadosEditar" role="tabpanel" aria-labelledby="dadosEditar-tab" tabindex="0">
+
+                                <input type="hidden" id="editar_id_despesa_recorrente" name="id">
+
+                                <div class="mb-3">
+                                    <label for="editar_nome_despesa_recorrente" class="form-label">Nome da despesa</label>
+                                    <input type="text" class="form-control" name="nome" placeholder="Nome da despesa" id="editar_nome_despesa_recorrente" aria-describedby="emailHelp" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editar_valor_despesa_recorrente" class="form-label">Valor</label>
+                                    <input type="text" id="editar_valor_despesa_recorrente" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="000.000.000.000.000.00" data-mask-reverse="true" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editar_forma_pagamento_despesa_recorrente" class="form-label">Forma de Pagamento</label>
+                                    <select name="forma_pagamento" id="editar_forma_pagamento_despesa_recorrente" class="form-control" required>
+                                        <option value="">Forma de pagamento</option>
+                                        <option value="boleto">Boleto</option>
+                                        <option value="pix">Pix</option>
+                                        <option value="debito">Débito automático</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editar_status_despesa_recorrente" class="form-label">Status</label>
+                                    <select name="status" id="editar_status_despesa_recorrente" class="form-control" required>
+                                        <option value="0">Não Pago</option>
+                                        <option value="1">Pago</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editar_data_despesa_recorrente" class="form-label">Data da despesa</label>
+                                    <input type="date" id="editar_data_despesa_recorrente" name="data" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="editar_comentario_despesa_recorrente" class="form-label">Comentário</label>
+                                    <textarea type="text" id="editar_comentario_despesa_recorrente" name="comentario" placeholder="Comentário" class="form-control" required></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">22222222222</div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript" src="{{ asset('js/validators/CreateDespesaValidator.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/validators/EditarDespesaValidator.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/functions/editarDespesaRecorrenteModal.js') }}"></script>
 
 @endsection
