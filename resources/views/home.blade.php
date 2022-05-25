@@ -136,12 +136,21 @@
                                     @endif
                                 </td>
                                 <td style="text-align: center;">
-                                    <form method="POST" action="{{ route('deleteDespesaRecorrente', $despesas->id) }}" onsubmit="return confirm('Tem certeza que deseja remover essa despesa?');">
-                                        @method('DELETE')
-                                        @csrf
-                                        <a data-toggle="tooltip" data-placement="top" title="Editar"><button type="button" class="btn btn-outline-primary btn-sm" onclick="editarDespesaRecorrenteModal({{ $despesas }});"><i class="fas fa-edit"></i></button></a>
-                                        <a data-toggle="tooltip" data-placement="top" title="Excluir"><button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-minus-circle"></i></button></a>
-                                    </form>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-solid fa-bars"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
+                                            <li><a class="dropdown-item" onclick="editarDespesaRecorrenteModal({{ $despesas }});">Editar</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+
+                                            <form method="POST" id="formExcluirDespesaRecorrente{{ $despesas->id }}" action="{{ route('deleteDespesaRecorrente', $despesas->id) }}">
+                                                @method('DELETE')
+                                                @csrf
+                                                <li><a onclick="submit('{{ $despesas->id }}')" class="dropdown-item" href="#">Excluir</a></li>
+                                            </form>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -266,7 +275,7 @@
                     <h5 class="modal-title" id="smallmodalLabel">Editar despesa do mês</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="POST" action="{{ route('despesaRecorrente') }}" id="EditarDespesaRecorrente">
+                <form method="POST" action="{{ route('despesaRecorrente') }}" id="EditarDespesaRecorrente" enctype="multipart/form-data">
                     <div class="modal-body">
                         @csrf
                         @method('put')
@@ -326,7 +335,23 @@
 
                             </div>
 
-                            <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">22222222222</div>
+                            <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">
+
+                                <div class="mb-3 mt-4">
+                                    <label for="editar_valor_despesa_recorrente" class="form-label">Boleto ou Fatura</label>
+                                    <div class="input-group">
+                                        <input type="file" name="boleto" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 mt-4">
+                                    <label for="editar_valor_despesa_recorrente" class="form-label">Comprovante de pagamento</label>
+                                    <div class="input-group">
+                                        <input type="file" name="comprovante" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -339,8 +364,9 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ asset('js/validators/CreateDespesaValidator.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/validators/EditarDespesaValidator.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/functions/editarDespesaRecorrenteModal.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/validators/CreateDespesaValidator.js') }}"></script> <!-- Validator do formulário de criação de despesa recorrente -->
+    <script type="text/javascript" src="{{ asset('js/validators/EditarDespesaValidator.js') }}"></script> <!-- Validator do formulário de edição de despesa recorrente -->
+    <script type="text/javascript" src="{{ asset('js/functions/editarDespesaRecorrenteModal.js') }}"></script> <!-- Abrir modal de edição de despesa recorrente -->
+    <script type="text/javascript" src="{{ asset('js/functions/submitEditarDespesaRecorrente.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 
 @endsection

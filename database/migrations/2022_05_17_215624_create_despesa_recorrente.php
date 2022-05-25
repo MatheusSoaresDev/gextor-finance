@@ -20,8 +20,6 @@ return new class extends Migration
             $table->float('valor');
             $table->string('forma_pagamento');
             $table->boolean('status')->default(0);
-            $table->binary('boleto')->nullable();
-            $table->binary('comprovante')->nullable();
             $table->string('comentario')->nullable();
 
             $table->string('id_user');

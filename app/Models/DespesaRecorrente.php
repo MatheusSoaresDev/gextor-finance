@@ -25,4 +25,9 @@ class DespesaRecorrente extends Model
     {
         return $this->hasMany(User::class, 'id');
     }
+
+    public function arquivos()
+    {
+        return $this->hasMany(Arquivo::class, 'id_despesa_recorrente');
+    }
 }

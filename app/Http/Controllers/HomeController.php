@@ -30,6 +30,7 @@ class HomeController extends Controller
             $this->session_date($request);
 
             $despesasRecorrentes = $this->despesaRecorrenteRepository->getDespesaPorMes();
+
             return view('home', compact('despesasRecorrentes'));
         }
 
