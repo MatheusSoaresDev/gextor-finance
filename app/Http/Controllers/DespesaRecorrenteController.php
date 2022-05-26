@@ -39,19 +39,6 @@ class DespesaRecorrenteController extends Controller
         return self::redirect($despesa, "excluir", "home");
     }
 
-    public function openFile(string $idArquivo)
-    {
-        $file = Arquivo::find($idArquivo)->first();
-        $path = storage_path("app/arquivos/$file->id".'.'.$file->extensao);
-
-        return response()->file($path, [
-            'Content-Type' => $file->tipo,
-            'Cache-Control' => 'no-cache',
-            'Pragma' => 'no-cache',
-            'Content-Disposition', 'inline;filename=myfile.pdf',
-        ]);
-    }
-
     private static function redirect($response, string $action, string $redirectPage)
     {
         if($response){

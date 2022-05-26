@@ -8,7 +8,7 @@
         <small> {{ session('error') }} </small>
 
         <div class="row mt-4" style="--bs-gutter-x: 0;">
-            <div class="col-sm-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding-right: 20px;">
                 <div class="card mb-3" style="max-width: 340px;">
                     <div class="row g-0">
                         <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding-right: 20px;">
                 <div class="card mb-3" style="max-width: 340px;">
                     <div class="row g-0">
                         <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                Despesas Recorrentes
+                                Recorrentes
                                 <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding-right: 20px;">
                 <div class="card mb-3" style="max-width: 340px;">
                     <div class="row g-0">
                         <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                Despesas Anuais
+                                Anuais
                                 <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3" style="padding-right: 20px;">
                 <div class="card mb-3" style="max-width: 340px;">
                     <div class="row g-0">
                         <div class="col-md-4" style="top: 0;bottom: 0;left: 0;right: 0;margin: auto;left: 50%;justify-content: center;display: flex;">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                Cartões de crédito
+                                Cartões
                                 <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
                             </div>
                         </div>
@@ -142,8 +142,13 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
                                             <li><a class="dropdown-item" onclick="editarDespesaRecorrenteModal({{ $despesas }});">Editar</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            @if($despesas->boleto || $despesas->comprovante) <li><hr class="dropdown-divider"></li>@endif
 
+
+                                            @if($despesas->boleto)<li><a class="dropdown-item" href="/file/{{ $despesas->boleto }}" target="_blank">Boleto</a></li>@endif
+                                            @if($despesas->comprovante)<li><a class="dropdown-item" href="/file/{{ $despesas->comprovante }}" target="_blank">Comprovante</a></li>@endif
+
+                                            @if($despesas->boleto || $despesas->comprovante) <li><hr class="dropdown-divider"></li>@endif
                                             <form method="POST" id="formExcluirDespesaRecorrente{{ $despesas->id }}" action="{{ route('deleteDespesaRecorrente', $despesas->id) }}">
                                                 @method('DELETE')
                                                 @csrf

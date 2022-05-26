@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DespesaRecorrenteController;
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/despesa/recorrente', [DespesaRecorrenteController::class, 'update'])->name('despesaRecorrente');
     Route::delete('/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'delete'])->name('deleteDespesaRecorrente');
 
-    Route::get('/despesa/recorrente/file/{id}', [DespesaRecorrenteController::class, 'openFile'])->name('despesaRecorrenteFile');
+    //Route::get('/despesa/recorrente/file/{id}', [DespesaRecorrenteController::class, 'openFile'])->name('despesaRecorrenteFile');
+    Route::get('/file/{id}', [FileController::class, 'open']);
 });
 
 
