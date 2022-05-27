@@ -126,7 +126,7 @@
                         @foreach($despesasRecorrentes as $despesas)
                             <tr style="vertical-align:middle">
                                 <td><span class="name">{{ $despesas->nome }}</span></td>
-                                <td> {{ ucfirst($despesas->forma_pagamento) }} </td>
+                                <td> @if($despesas->forma_pagamento == 'b') Boleto @elseif($despesas->forma_pagamento == 'p') Pix @elseif($despesas->forma_pagamento == 'd') Débito @endif</td>
                                 <td> R$ {{ number_format($despesas->valor, 2, ',') }} </td>
                                 <td>
                                     @if($despesas->status == 1)
@@ -250,9 +250,9 @@
                             <label for="forma_pagamento_despesa_recorrente" class="form-label">Forma de Pagamento</label>
                             <select name="forma_pagamento" id="forma_pagamento_despesa_recorrente" class="form-control" required>
                                 <option value="">Forma de pagamento</option>
-                                <option value="boleto">Boleto</option>
-                                <option value="pix">Pix</option>
-                                <option value="debito">Débito automático</option>
+                                <option value="b">Boleto</option>
+                                <option value="p">Pix</option>
+                                <option value="d">Débito automático</option>
                             </select>
                         </div>
 
@@ -314,9 +314,9 @@
                                     <label for="editar_forma_pagamento_despesa_recorrente" class="form-label">Forma de Pagamento</label>
                                     <select name="forma_pagamento" id="editar_forma_pagamento_despesa_recorrente" class="form-control" required>
                                         <option value="">Forma de pagamento</option>
-                                        <option value="boleto">Boleto</option>
-                                        <option value="pix">Pix</option>
-                                        <option value="debito">Débito automático</option>
+                                        <option value="b">Boleto</option>
+                                        <option value="p">Pix</option>
+                                        <option value="d">Débito automático</option>
                                     </select>
                                 </div>
 

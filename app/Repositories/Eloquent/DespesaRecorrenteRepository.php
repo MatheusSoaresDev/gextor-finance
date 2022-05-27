@@ -25,7 +25,7 @@ class DespesaRecorrenteRepository extends AbstractRepository implements DespesaR
     {
         $despesa = $this->get($data["id"]);
 
-        Arquivo::create($despesa, $data, 'boleto');
-        Arquivo::create($despesa, $data, 'comprovante');
+        if(isset($data["boleto"])){Arquivo::create($despesa, $data, 'boleto');}
+        if(isset($data["comprovante"])){Arquivo::create($despesa, $data, 'comprovante');}
     }
 }

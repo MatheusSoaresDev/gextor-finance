@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateDespesaFixaRequest;
+use App\Http\Requests\UpdateDespesaRecorrenteRequest;
 use App\Models\Arquivo;
 use App\Models\DespesaRecorrente;
 use App\Repositories\Contracts\DespesaRecorrenteRepositoryInterface;
@@ -23,7 +24,7 @@ class DespesaRecorrenteController extends Controller
         return self::redirect($despesa, "cadastrar", "home");
     }
 
-    public function update(Request $request)
+    public function update(UpdateDespesaRecorrenteRequest $request)
     {
         $data = $request->only(['id', 'nome', 'valor', 'forma_pagamento', 'status', 'data', 'comentário', 'boleto', 'comprovante']);
         $despesa = $this->despesaRecorrenteRepository->update($data);
