@@ -22,6 +22,7 @@ Route::get('/', function (){ return view('auth.login'); });
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::put('/change/data', [App\Http\Controllers\HomeController::class, 'changeData'])->name('changeData');
 
     Route::get('/despesa/recorrente', [DespesaRecorrenteController::class, 'index'])->name('despesaRecorrente');
     Route::post('/despesa/recorrente', [DespesaRecorrenteController::class, 'create'])->name('despesaRecorrente');

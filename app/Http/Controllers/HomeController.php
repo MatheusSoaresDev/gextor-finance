@@ -27,34 +27,24 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if(Auth::check()){
-            $this->session_date($request);
+            //$this->session_date($request);
 
             $despesasRecorrentes = $this->despesaRecorrenteRepository->getDespesaPorMes();
 
             return view('home', compact('despesasRecorrentes'));
         }
-
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
-    private function session_date(Request $request)
+    public function changeData(Request $request)
     {
-        $dados_data = $request->only('mes', 'ano');
+        $dados_data = $request->only("mes", "ano");
 
-        if(!$request->session()->get('data')){
-            $request->session()->put('data',
-                [
-                    "mes" => date("m"),
-                    "ano" => date("Y")
-                ]
-            );
-        } else {
-            $request->session()->put('data',
-                [
-                    "mes" => $dados_data["mes"] ?? date("m"),
-                    "ano" => $dados_data["ano"] ?? date("Y")
-                ]
-            );
-        }
+        $request->session()->put("data", [
+            "mes" => $dados_data["mes"] ?? date("m"),
+            "ano" => $dados_data["ano"] ?? date("Y"),
+        ]);
+
+        return redirect('home')->withSuccess("Data alterada com sucesso!");
     }
 }
