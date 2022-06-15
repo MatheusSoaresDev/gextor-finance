@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Storage;
 
 Auth::routes();
 Route::get('/', function (){ return view('auth.login'); });
+Route::get('/teste', function (){
+    dd(\Illuminate\Support\Facades\App::environment());
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
