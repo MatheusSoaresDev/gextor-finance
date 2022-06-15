@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-Interface MesDespesaRecorrenteRepositoryInterface
+interface ReceitaRepositoryInterface
 {
     public function create(array $data);
     public function get(string $id);

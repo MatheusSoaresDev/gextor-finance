@@ -12,7 +12,9 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "lucascudo/laravel-pt-br-localization": "^1.2",
-        "ramsey/uuid": "^4.3"
+        "ramsey/uuid": "^4.3",
+        "ext-bcmath": "*",
+        "ext-intl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\DespesaRecorrente;
+use App\Models\Receita;
 use App\Observers\DespesaRecorrenteObserver;
+use App\Observers\ReceitaObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\DespesaRecorrenteRepositoryInterface',
             'App\Repositories\Eloquent\DespesaRecorrenteRepository',
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\ReceitaRepositoryInterface',
+            'App\Repositories\Eloquent\ReceitaRepository',
+        );
     }
 
     /**
@@ -34,5 +41,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         DespesaRecorrente::observe(DespesaRecorrenteObserver::class);
+        Receita::observe(ReceitaObserver::class);
     }
 }

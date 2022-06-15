@@ -4,7 +4,7 @@ namespace App\Repositories\Rules;
 
 use App\Models\DespesaRecorrente;
 use App\Models\User;
-use App\Models\Arquivo as ArquivoModel;
+use App\Models\ArquivoDespesaRecorrente as ArquivoModel;
 use Illuminate\Support\Facades\Storage;
 
 class Arquivo
@@ -36,7 +36,7 @@ class Arquivo
     private static function storeFileAndSave(array $data, string $tipo, $file, $despesa):void
     {
         $arquivo = $data[$tipo]->storeAs('arquivos', $file->id.'.'.$data[$tipo]->getClientOriginalExtension());
-        $despesa->$tipo = $file->id;
-        $despesa->save();
+        /*$despesa->$tipo = $file->id;
+        $despesa->save();*/
     }
 }

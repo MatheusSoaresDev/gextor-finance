@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('nome');
             $table->date('data');
-            $table->float('valor');
+            $table->string('valor');
             $table->string('forma_pagamento');
             $table->boolean('status')->default(0);
             $table->string('comentario')->nullable();

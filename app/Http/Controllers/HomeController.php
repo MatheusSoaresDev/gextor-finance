@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\DespesaRecorrenteRepositoryInterface;
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\ReceitaRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    private UserRepositoryInterface $userRepository;
     private DespesaRecorrenteRepositoryInterface $despesaRecorrenteRepository;
+    private ReceitaRepositoryInterface $receitaRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository, DespesaRecorrenteRepositoryInterface $despesaRecorrenteRepository)
+    public function __construct(DespesaRecorrenteRepositoryInterface $despesaRecorrenteRepository, ReceitaRepositoryInterface $receitaRepository)
     {
         $this->middleware('auth');
-        $this->userRepository = $userRepository;
         $this->despesaRecorrenteRepository = $despesaRecorrenteRepository;
+        $this->receitaRepository = $receitaRepository;
     }
 
     /**
@@ -27,11 +27,15 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if(Auth::check()){
-            //$this->session_date($request);
 
-            $despesasRecorrentes = $this->despesaRecorrenteRepository->getDespesaPorMes();
 
-            return view('home', compact('despesasRecorrentes'));
+            $despesas = $this->despesaRecorrenteRepository->getDespesaPorMes();
+            $receitas = $this->receitaRepository->getReceitaPorMes();
+
+            return view('home', [
+                "despesas" => $despesas,
+                "receitas" => $receitas
+            ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }

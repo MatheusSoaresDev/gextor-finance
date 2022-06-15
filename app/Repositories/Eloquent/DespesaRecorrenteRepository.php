@@ -3,7 +3,6 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\DespesaRecorrente;
-use App\Models\Mes_Despesa_Recorrente;
 use App\Repositories\Contracts\DespesaRecorrenteRepositoryInterface;
 use App\Repositories\Rules\Arquivo;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +14,7 @@ class DespesaRecorrenteRepository extends AbstractRepository implements DespesaR
 
     public function getDespesaPorMes()
     {
-        return $this->all()
+        return $this->model->with(['arquivos'])
             ->whereMonth('data', Request::session()->get('data')['mes'])
             ->whereYear('data', Request::session()->get('data')['ano'])
             ->get();

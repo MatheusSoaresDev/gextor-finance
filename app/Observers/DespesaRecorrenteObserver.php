@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\DespesaRecorrente;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 
 class DespesaRecorrenteObserver
@@ -16,7 +17,8 @@ class DespesaRecorrenteObserver
      */
     public function created(DespesaRecorrente $despesaRecorrente)
     {
-        //
+        Log::info("Valor salvo: ".$despesaRecorrente->valor);
+
     }
 
     public function creating(DespesaRecorrente $despesaRecorrente)
