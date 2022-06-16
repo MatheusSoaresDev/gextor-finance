@@ -6,6 +6,7 @@ use App\Models\DespesaRecorrente;
 use App\Models\Receita;
 use App\Observers\DespesaRecorrenteObserver;
 use App\Observers\ReceitaObserver;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,5 +47,6 @@ class AppServiceProvider extends ServiceProvider
         if($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
+        Schema::defaultStringLength(191);
     }
 }
