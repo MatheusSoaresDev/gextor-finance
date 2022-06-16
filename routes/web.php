@@ -28,7 +28,12 @@ Route::get('/teste', function (){
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    try{
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    } catch (Exception $error){
+        dd($error->getMessage());
+    }
+
     Route::put('/change/data', [App\Http\Controllers\HomeController::class, 'changeData'])->name('changeData');
 
     Route::post('/receita', [ReceitaController::class, 'create'])->name('receita');
