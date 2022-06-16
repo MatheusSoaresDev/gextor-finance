@@ -42,5 +42,9 @@ class AppServiceProvider extends ServiceProvider
     {
         DespesaRecorrente::observe(DespesaRecorrenteObserver::class);
         Receita::observe(ReceitaObserver::class);
+
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
     }
 }
