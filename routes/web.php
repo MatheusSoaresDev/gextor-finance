@@ -21,7 +21,10 @@ use Illuminate\Support\Facades\Storage;
 Auth::routes();
 Route::get('/', function (){ return view('auth.login'); });
 Route::get('/teste', function (){
-    dd(\Illuminate\Support\Facades\App::environment());
+    dd(
+        \Illuminate\Support\Facades\App::environment(),
+        Auth::user()
+    );
 });
 
 Route::group(['middleware' => ['auth']], function () {
