@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nome');
             $table->date('data');
             $table->decimal('valor', 10.2);
-            $table->boolean('status')->default(0);
+            $table->integer('status')->default(0);
             $table->string('comentario')->nullable();
             $table->timestamps();
 
