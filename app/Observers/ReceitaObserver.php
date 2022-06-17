@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 
 class ReceitaObserver
@@ -23,17 +24,15 @@ class ReceitaObserver
     {
         $receita->data = ((new \DateTime(''))->setDate(Request::session()->get('data')['ano'], Request::session()->get('data')['mes'], '01'))->format("Y-m-d");
         $receita->id_user = Auth::id();
+        $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
     }
 
-    /**
-     * Handle the Receita "updated" event.
-     *
-     * @param  \App\Models\Receita  $receita
-     * @return void
-     */
     public function updated(Receita $receita)
     {
-        //
+        Log::info("data updated");
+        if ($receita->wasChanged('is_active')) {
+            Log::info("data updated2");
+        }
     }
 
     /**

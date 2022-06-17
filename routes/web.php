@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/change/data', [App\Http\Controllers\HomeController::class, 'changeData'])->name('changeData');
 
     Route::post('/receita', [ReceitaController::class, 'create'])->name('receita');
+    Route::put('/receita', [ReceitaController::class, 'update'])->name('receita');
 
     Route::post('/despesa/recorrente', [DespesaRecorrenteController::class, 'create'])->name('despesaRecorrente');
     Route::get('/despesa/recorrente', [DespesaRecorrenteController::class, 'index'])->name('despesaRecorrente');

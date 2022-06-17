@@ -14,8 +14,7 @@ class Receita extends Model
     public $timestamps = true;
     protected $fillable = ['nome', 'data', 'valor', 'status', 'boleto', 'documento', 'id_user'];
     protected $table = 'receita';
-    protected $visible = ['nome', 'data', 'valor', 'status', 'boleto', 'documento', 'id_user'];
-    protected $casts = ['valor' => 'float'];
+    protected $visible = ['id','nome', 'data', 'valor', 'status', 'boleto', 'documento', 'id_user'];
 
     public function arquivos()
     {

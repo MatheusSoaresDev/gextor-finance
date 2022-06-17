@@ -27,8 +27,6 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if(Auth::check()){
-
-
             $despesas = $this->despesaRecorrenteRepository->getDespesaPorMes();
             $receitas = $this->receitaRepository->getReceitaPorMes();
 
