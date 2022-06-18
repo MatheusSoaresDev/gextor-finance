@@ -118,11 +118,11 @@
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="dadosEditar-tab" data-bs-toggle="pill" data-bs-target="#dadosEditar" type="button" role="tab" aria-controls="dadosEditar" aria-selected="true">Dados</button>
+                            <button class="nav-link active" onclick="diminuiModal('editarreceitamodal')" id="dadosEditar-tab" data-bs-toggle="pill" data-bs-target="#dadosEditar" type="button" role="tab" aria-controls="dadosEditar" aria-selected="true">Dados</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="arquivos-tab" data-bs-toggle="pill" data-bs-target="#arquivos" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
+                            <button class="nav-link" onclick="aumentaModal('editarreceitamodal')" id="arquivos-tab" data-bs-toggle="pill" data-bs-target="#arquivos" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
                         </li>
                     </ul>
 
@@ -167,12 +167,31 @@
 
                         <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">
 
-                            <div class="mb-3 mt-4">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Formato</th>
+                                        <th scope="col">Tipo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>fatura0.pdf</td>
+                                        <td>application/pdf</td>
+                                        <td>Comprovante</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!--<div class="mb-3 mt-4">
                                 <label for="editar_valor_receita" class="form-label">Comprovante de recebimento</label>
                                 <div class="input-group">
                                     <input type="file" name="comprovante" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                 </div>
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>
@@ -341,3 +360,7 @@
 <script type="text/javascript" src="{{ asset('js/functions/editarDespesaRecorrenteModal.js') }}"></script> <!-- Abrir modal de edição de despesa recorrente -->
 <script type="text/javascript" src="{{ asset('js/functions/editarReceitaModal.js') }}"></script> <!-- Abrir modal de edição de receita recorrente -->
 <script type="text/javascript" src="{{ asset('js/functions/submitEditarDespesaRecorrente.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
+
+<script type="text/javascript" src="{{ asset('js/functions/aumentaDiminuiModal.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
+
+

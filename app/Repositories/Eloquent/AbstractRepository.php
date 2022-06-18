@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Repositories\Rules\Arquivo;
 use Illuminate\Support\Facades\Auth;
 
 abstract class AbstractRepository
@@ -37,6 +38,14 @@ abstract class AbstractRepository
     {
         return $this->get($id)->delete();
     }
+
+    /*public function anexarArquivos(array $data):void
+    {
+        $obj = $this->get($data["id"]);
+
+        if(isset($data["boleto"])){Arquivo::create($obj, $data, 'boleto');}
+        if(isset($data["comprovante"])){Arquivo::create($obj, $data, 'comprovante');}
+    }*/
 
     protected function resolveModel()
     {

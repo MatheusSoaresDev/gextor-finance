@@ -19,12 +19,4 @@ class DespesaRecorrenteRepository extends AbstractRepository implements DespesaR
             ->whereYear('data', Request::session()->get('data')['ano'])
             ->get();
     }
-
-    public function anexarArquivos(array $data):void
-    {
-        $despesa = $this->get($data["id"]);
-
-        if(isset($data["boleto"])){Arquivo::create($despesa, $data, 'boleto');}
-        if(isset($data["comprovante"])){Arquivo::create($despesa, $data, 'comprovante');}
-    }
 }

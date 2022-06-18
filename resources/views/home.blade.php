@@ -144,6 +144,7 @@
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
                                         <li><a class="dropdown-item" onclick="editarReceitaModal({{ $receita }});">Editar</a></li>
+                                        @if(count($receita->arquivos) > 0) <li><hr class="dropdown-divider"></li>@endif
                                     </ul>
 
                                 </div>
