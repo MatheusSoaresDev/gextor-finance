@@ -25,10 +25,10 @@ class ReceitaController extends Controller
     public function update(Request $request)
     {
         $data = $request->only(['id', 'nome', 'data', 'valor', 'status', 'comentario']);
-        $file = $request->only(['id', 'comprovante']);
-
         $receita = $this->receitaRepository->update($data);
-        $this->receitaRepository->anexarArquivos($file);
+
+        //$file = $request->only(['id', 'comprovante']);
+        //$this->receitaRepository->anexarArquivos($file);
 
         return self::redirect($receita, "atualizar", "home");
     }

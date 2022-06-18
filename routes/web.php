@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArquivoController;
 use App\Http\Controllers\DespesaRecorrenteController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ReceitaController;
@@ -20,9 +21,6 @@ use Illuminate\Support\Facades\Storage;
 
 Auth::routes();
 Route::get('/', function (){ return view('auth.login'); });
-Route::get('/teste', function (){
-    dd(\Illuminate\Support\Facades\App::environment());
-});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/despesa/recorrente', [DespesaRecorrenteController::class, 'update'])->name('despesaRecorrente');
     Route::delete('/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'delete'])->name('deleteDespesaRecorrente');
 
-    Route::get('/file/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'getFile']);
+    Route::post('/file/anexar', [ArquivoController::class, 'insertFile']);
 });
 
 

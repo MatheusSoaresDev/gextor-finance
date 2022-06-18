@@ -111,23 +111,22 @@
                 <h5 class="modal-title" id="smallmodalLabel">Editar receita</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('receita') }}" id="EditarDespesaRecorrente" enctype="multipart/form-data">
-                <div class="modal-body">
-                    @csrf
-                    @method('put')
+            <div class="modal-body">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" onclick="diminuiModal('editarreceitamodal')" id="dadosEditar-tab" data-bs-toggle="pill" data-bs-target="#dadosEditar" type="button" role="tab" aria-controls="dadosEditar" aria-selected="true">Dados</button>
+                    </li>
 
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" onclick="diminuiModal('editarreceitamodal')" id="dadosEditar-tab" data-bs-toggle="pill" data-bs-target="#dadosEditar" type="button" role="tab" aria-controls="dadosEditar" aria-selected="true">Dados</button>
-                        </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" onclick="aumentaModal('editarreceitamodal')" id="arquivos-tab" data-bs-toggle="pill" data-bs-target="#arquivos" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
+                    </li>
+                </ul>
 
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" onclick="aumentaModal('editarreceitamodal')" id="arquivos-tab" data-bs-toggle="pill" data-bs-target="#arquivos" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="dadosEditar" role="tabpanel" aria-labelledby="dadosEditar-tab" tabindex="0">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="dadosEditar" role="tabpanel" aria-labelledby="dadosEditar-tab" tabindex="0">
+                        <form method="POST" action="{{ route('receita') }}" id="EditarDespesaRecorrente">
+                            @csrf
+                            @method('put')
 
                             <input type="hidden" id="editar_id_receita" name="id">
 
@@ -162,46 +161,111 @@
                                 <label for="editar_comentario_receita" class="form-label">Comentário</label>
                                 <textarea type="text" id="editar_comentario_receita" name="comentario" placeholder="Comentário" class="form-control"></textarea>
                             </div>
-
-                        </div>
-
-                        <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Formato</th>
-                                        <th scope="col">Tipo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>fatura0.pdf</td>
-                                        <td>application/pdf</td>
-                                        <td>Comprovante</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <!--<div class="mb-3 mt-4">
-                                <label for="editar_valor_receita" class="form-label">Comprovante de recebimento</label>
-                                <div class="input-group">
-                                    <input type="file" name="comprovante" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                </div>
-                            </div>-->
-
-                        </div>
+                        </form>
                     </div>
 
+                    <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">
+                        <table class="table" style="text-align: center; vertical-align: middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Formato</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>fatura0.pdf</td>
+                                    <td>application/pdf</td>
+                                    <td>
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                            <option value="1">Boleto</option>
+                                            <option value="2">Comprovante</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-file"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-sm">
+                                            <i class="fa-solid fa-file-arrow-down"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>fatura0.pdf</td>
+                                    <td>application/pdf</td>
+                                    <td style="text-align: center;">
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                            <option value="1">Boleto</option>
+                                            <option value="2">Comprovante</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-file"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-sm">
+                                            <i class="fa-solid fa-file-arrow-down"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>fatura0.pdf</td>
+                                    <td>application/pdf</td>
+                                    <td>
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                            <option value="1">Boleto</option>
+                                            <option value="2">Comprovante</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button>
+                                        <button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="d-grid gap-2 col-3 mx-auto">
+                                            <form method="POST" id="addFileReceitaForm" enctype="multipart/form-data">
+                                                @csrf
+                                                <label for="file-upload" class="custom-file-upload btn btn-primary"><i class="fa-solid fa-plus"></i>&nbspAdicionar arquivo</label>
+                                                <input id="file-upload" onchange="anexarArquivo(this)" name="file" class="input-file receita addFileReceitaForm" type="file"/>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <!--<div class="mb-3 mt-4">
+                            <label for="editar_valor_receita" class="form-label">Comprovante de recebimento</label>
+                            <div class="input-group">
+                                <input type="file" name="comprovante" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                            </div>
+                        </div>-->
+
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Editar</button>
-                </div>
-            </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" onclick="document.getElementById('EditarDespesaRecorrente').submit();" class="btn btn-success">Editar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -348,6 +412,20 @@
     </div>
 </div>
 
+<style>
+
+    input[type="file"] {
+        display: none;
+    }
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+
+</style>
+
 <!-- Arquivos -->
 
 <script type="text/javascript">
@@ -362,5 +440,6 @@
 <script type="text/javascript" src="{{ asset('js/functions/submitEditarDespesaRecorrente.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 
 <script type="text/javascript" src="{{ asset('js/functions/aumentaDiminuiModal.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
+<script type="text/javascript" src="{{ asset('js/functions/addFiles.js') }}"></script> <!-- Função para adicionar arquivos -->
 
 
