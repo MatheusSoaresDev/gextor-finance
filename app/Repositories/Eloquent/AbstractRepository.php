@@ -30,7 +30,7 @@ abstract class AbstractRepository
 
     public function update(array $data)
     {
-        return $this->model->where('id', $data['id'])->update($data);
+        return $this->get($data["id"])->update($data);
     }
 
     public function delete(string $id)

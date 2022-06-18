@@ -27,12 +27,9 @@ class ReceitaObserver
         $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
     }
 
-    public function updated(Receita $receita)
+    public function updating(Receita $receita)
     {
-        Log::info("data updated");
-        if ($receita->wasChanged('is_active')) {
-            Log::info("data updated2");
-        }
+        $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
     }
 
     /**

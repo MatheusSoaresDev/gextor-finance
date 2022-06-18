@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Receita;
 use App\Repositories\Contracts\ReceitaRepositoryInterface;
 use Illuminate\Http\Request;
 
