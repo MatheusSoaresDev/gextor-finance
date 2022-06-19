@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Arquivos\ArquivoReceita;
 use App\Traits\HasPrimaryKeyUuid;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,6 @@ class Receita extends Model
 
     public function arquivos()
     {
-        return $this->hasMany(ArquivoDespesaRecorrente::class, 'id_despesa_recorrente');
+        return $this->hasMany(ArquivoReceita::class, 'id_receita');
     }
 }

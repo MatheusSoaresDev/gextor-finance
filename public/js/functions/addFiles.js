@@ -11,16 +11,17 @@ function anexarArquivo(formObj){
     const tipo = formObj.classList[1];
     const form = formObj.classList[2];
     const id = formObj.classList[3];
-    const myForm = document.getElementById(form);
 
+    const myForm = document.getElementById(form);
     const formData = new FormData(myForm);
+
     formData.append('tipo', tipo);
     formData.append('id', id);
 
     $.ajax({
         type:'POST',
         //dataType: 'json',
-        url: '/file/anexar',
+        url: '/file/'+tipo+'/anexar',
         data: formData,
         contentType: false,
         processData: false,
@@ -34,9 +35,6 @@ function anexarArquivo(formObj){
 
         }
     });
-
-    //console.log(formData.getAll('tipo'));
-    //console.log(formData.getAll('id'));
 }
 
 

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Arquivos;
 
+use App\Models\DespesaRecorrente;
 use App\Traits\HasPrimaryKeyUuid;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

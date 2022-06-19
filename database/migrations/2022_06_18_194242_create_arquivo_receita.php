@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('arquivo_despesa_recorrente', function (Blueprint $table) {
+        Schema::create('arquivo_receita', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('tipo');
             $table->string('nome_original');
@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('tamanho');
             $table->string('tipo_documento');
 
-            $table->string('id_despesa_recorrente');
-            $table->foreign('id_despesa_recorrente')->references('id')->on('despesa_recorrente');
+            $table->string('id_receita');
+            $table->foreign('id_receita')->references('id')->on('receita');
 
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Arquivos');
+        Schema::dropIfExists('arquivo_receita');
     }
 };

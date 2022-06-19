@@ -44,7 +44,7 @@ class DespesaRecorrenteController extends Controller
     public function getFile(string $idArquivo)
     {
         $file = ArquivoDespesaRecorrente::where('id', $idArquivo)->first();
-        $path = storage_path("app/arquivos/$file->id".'.'.$file->extensao);
+        $path = storage_path("app/Arquivos/$file->id".'.'.$file->extensao);
 
         return response()->file($path, [
             'Content-Type' => $file->tipo,

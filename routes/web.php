@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\ArquivoController;
+use App\Http\Controllers\ArquivoReceitaController;
 use App\Http\Controllers\DespesaRecorrenteController;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\ReceitaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +33,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/despesa/recorrente', [DespesaRecorrenteController::class, 'update'])->name('despesaRecorrente');
     Route::delete('/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'delete'])->name('deleteDespesaRecorrente');
 
-    Route::post('/file/anexar', [ArquivoController::class, 'insertFile']);
+    Route::post('/file/receita/anexar', [ArquivoReceitaController::class, 'create']);
 });
-
-

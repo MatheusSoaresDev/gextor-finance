@@ -440,6 +440,6 @@
 <script type="text/javascript" src="{{ asset('js/functions/submitEditarDespesaRecorrente.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 
 <script type="text/javascript" src="{{ asset('js/functions/aumentaDiminuiModal.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
-<script type="text/javascript" src="{{ asset('js/functions/addFiles.js') }}"></script> <!-- Função para adicionar arquivos -->
+<script type="text/javascript" src="{{ asset('js/functions/addFiles.js') }}"></script> <!-- Função para adicionar Arquivos -->
 
 
