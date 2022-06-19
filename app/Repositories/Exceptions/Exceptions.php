@@ -3,6 +3,7 @@
 namespace App\Repositories\Exceptions;
 
 use App\Repositories\Rules\Arquivo;
+use Illuminate\Support\Facades\DB;
 
 class Exceptions
 {
@@ -17,12 +18,24 @@ class Exceptions
     public function create(array $data)
     {
         try{
-            $obj = $this->model->where("id", $data["id"])->first();
-            $file = Arquivo::create($obj, $data["file"], $this->tipo);
+            DB::beginTransaction();
+            $file = Arquivo::create($this->getObj($data), $data["file"], $this->tipo);
+            DB::commit();
+
+            return response()->json($file);
 
         } catch(\Exception $exception){
-
+            DB::rollBack();
+            return response()->json([
+                "message" => $exception->getMessage(),
+                "code" => $exception->getCode()
+            ]);
         }
+    }
+
+    private function getObj(array $data)
+    {
+        return $this->model->where("id", $data["id"])->first();
     }
 
     protected function resolveModel()

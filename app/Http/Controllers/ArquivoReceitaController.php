@@ -20,8 +20,6 @@ class ArquivoReceitaController extends Controller
     public function create(Request $request)
     {
         $data = $request->only(['id','tipo', 'file']);
-        $this->arquivoReceitaExceptions->create($data);
-
-        dd('salvo com sucesso');
+        return $this->arquivoReceitaExceptions->create($data);
     }
 }

@@ -1,12 +1,3 @@
-/*$('#file-upload').on("change", function(){
-    const tipo = this.classList[1];
-    const form = this.classList[2];
-    const id = this.classList[3];
-
-
-    console.log((myForm));
-});*/
-
 function anexarArquivo(formObj){
     const tipo = formObj.classList[1];
     const form = formObj.classList[2];
@@ -36,5 +27,4 @@ function anexarArquivo(formObj){
         }
     });
 }
-
 

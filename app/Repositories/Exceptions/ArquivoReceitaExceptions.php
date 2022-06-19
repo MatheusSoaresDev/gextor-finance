@@ -11,28 +11,4 @@ class ArquivoReceitaExceptions extends Exceptions
 {
     protected $model = Receita::class;
     protected string $tipo = 'receita';
-
-    /*private ReceitaArquivoRepositoryInterface $receitaArquivoRepository;
-
-    public function __construct(ReceitaArquivoRepositoryInterface $receitaArquivoRepository)
-    {
-        $this->receitaArquivoRepository = $receitaArquivoRepository;
-    }*/
-
-
-    /*protected $model = ArquivoReceita::class;
-
-    public function create(array $data)
-    {
-        try{
-            $obj = $this->model->where("id", $data["id"])->first();
-            dd($obj);
-
-            $file = new Arquivo($obj);
-            $createdFile = $file->create($data["file"], $this->tipo);
-
-        } catch(\Exception $exception){
-
-        }
-    }*/
 }
