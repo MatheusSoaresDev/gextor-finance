@@ -40,17 +40,4 @@ class DespesaRecorrenteController extends Controller
         $despesa = $this->despesaRecorrenteRepository->delete($id);
         return self::redirect($despesa, "excluir", "home");
     }
-
-    public function getFile(string $idArquivo)
-    {
-        $file = ArquivoDespesaRecorrente::where('id', $idArquivo)->first();
-        $path = storage_path("app/Arquivos/$file->id".'.'.$file->extensao);
-
-        return response()->file($path, [
-            'Content-Type' => $file->tipo,
-            'Cache-Control' => 'no-cache',
-            'Pragma' => 'no-cache',
-            'Content-Disposition', 'inline;filename=myfile.pdf',
-        ]);
-    }
 }

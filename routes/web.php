@@ -34,4 +34,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'delete'])->name('deleteDespesaRecorrente');
 
     Route::post('/file/receita/anexar', [ArquivoReceitaController::class, 'create']);
+    Route::get('/file/receita/{id}', [ArquivoReceitaController::class, 'getFile']);
 });
