@@ -19,7 +19,7 @@ class Arquivo
             'nome_original' => $arq->getClientOriginalName(),
             'extensao' => $arq->getClientOriginalExtension(),
             'tamanho' => $arq->getSize(),
-            'tipo_documento' => $tipo,
+            'tipo_documento' => null,
         ]);
 
         self::storeFileAndSave($arq, $file);

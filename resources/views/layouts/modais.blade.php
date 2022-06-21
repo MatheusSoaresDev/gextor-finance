@@ -165,7 +165,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">
-                        <table class="table" style="text-align: center; vertical-align: middle">
+                        <table class="table" id="table-receita" style="text-align: center; vertical-align: middle">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -175,7 +175,7 @@
                                     <th scope="col">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tbody-receita">
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>fatura0.pdf</td>
@@ -187,15 +187,9 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-file"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm">
-                                            <i class="fa-solid fa-file-arrow-down"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        <a href=""><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button></a>
+                                        <button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -236,27 +230,23 @@
                                         <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="d-grid gap-2 col-3 mx-auto">
-                                            <form method="POST" id="addFileReceitaForm" enctype="multipart/form-data">
-                                                @csrf
-                                                <label for="file-upload" class="custom-file-upload btn btn-primary"><i class="fa-solid fa-plus"></i>&nbspAdicionar arquivo</label>
-                                                <input id="file-upload" onchange="anexarArquivo(this)" name="file" class="input-file receita addFileReceitaForm" type="file"/>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
 
                             </tbody>
                         </table>
 
-                        <!--<div class="mb-3 mt-4">
-                            <label for="editar_valor_receita" class="form-label">Comprovante de recebimento</label>
-                            <div class="input-group">
-                                <input type="file" name="comprovante" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <div style="margin-bottom: 14px; display: none;" class="text-center" id="spinner-receita">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-                        </div>-->
+                        </div>
+
+                        <div class="d-grid gap-2 col-3 mx-auto">
+                            <form method="POST" id="addFileReceitaForm" enctype="multipart/form-data">
+                                @csrf
+                                <label for="file-upload" class="custom-file-upload btn btn-primary"><i class="fa-solid fa-plus"></i>&nbspAdicionar arquivo</label>
+                                <input id="file-upload" onchange="anexarArquivo(this)" name="file" class="input-file receita addFileReceitaForm" type="file"/>
+                            </form>
+                        </div>
 
                     </div>
                 </div>

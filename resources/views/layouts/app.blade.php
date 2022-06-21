@@ -144,6 +144,7 @@
 
 <script src="{{ asset("js/validate/dist/jquery.validate.js") }}"></script>
 <script src="{{ asset("js/validate/dist/localization/messages_pt_BR.js") }}"></script>
+<script src="{{ asset("js/notify.js") }}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
 <script src="https://kit.fontawesome.com/8f5d4ecd14.js" crossorigin="anonymous"></script>

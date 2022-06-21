@@ -22,7 +22,7 @@ class Exceptions
             $file = Arquivo::create($this->getObj($data), $data["file"], $this->tipo);
             DB::commit();
 
-            return response()->json($file);
+            return response()->json($file, '200');
 
         } catch(\Exception $exception){
             DB::rollBack();
