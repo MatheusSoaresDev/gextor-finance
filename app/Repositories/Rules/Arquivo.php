@@ -36,6 +36,6 @@ class Arquivo
 
     private static function storeFileAndSave(UploadedFile $arq, $file)
     {
-        $arquivo = $arq->storeAs('arquivos', $file->id.'.'.$arq->getClientOriginalExtension());
+        $arquivo = $arq->storeAs('', $file->id.'.'.$arq->getClientOriginalExtension());
     }
 }

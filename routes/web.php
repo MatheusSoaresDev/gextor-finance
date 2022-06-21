@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArquivoReceitaController;
 use App\Http\Controllers\DespesaRecorrenteController;
+use App\Http\Controllers\DropboxController;
 use App\Http\Controllers\ReceitaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

@@ -8,6 +8,7 @@ use App\Models\Receita;
 use App\Repositories\Contracts\Arquivos\ReceitaArquivoRepositoryInterface;
 use App\Repositories\Exceptions\ArquivoReceitaExceptions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArquivoReceitaController extends Controller
 {
@@ -27,13 +28,6 @@ class ArquivoReceitaController extends Controller
     public function getFile(string $idArquivo)
     {
         $file = ArquivoReceita::where('id', $idArquivo)->first();
-        $path = storage_path("app/arquivos/$file->id".'.'.$file->extensao);
-
-        return response()->file($path, [
-            'Content-Type' => $file->tipo,
-            'Cache-Control' => 'no-cache',
-            'Pragma' => 'no-cache',
-            'Content-Disposition', 'inline;filename=myfile.pdf',
-        ]);
+        return Storage::response($file->id.'.'.$file->extensao);
     }
 }
