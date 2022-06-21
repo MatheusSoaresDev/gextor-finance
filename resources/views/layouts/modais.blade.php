@@ -176,7 +176,7 @@
                                 </tr>
                             </thead>
                             <tbody id="tbody-receita">
-                                <tr>
+                                <!--<tr>
                                     <th scope="row">1</th>
                                     <td>fatura0.pdf</td>
                                     <td>application/pdf</td>
@@ -229,7 +229,7 @@
                                         <button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button>
                                         <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
-                                </tr>
+                                </tr>-->
 
                             </tbody>
                         </table>
@@ -431,5 +431,5 @@
 
 <script type="text/javascript" src="{{ asset('js/functions/aumentaDiminuiModal.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 <script type="text/javascript" src="{{ asset('js/functions/addFiles.js') }}"></script> <!-- Função para adicionar Arquivos -->
-
+<script type="text/javascript" src="{{ asset('js/functions/listFiles.js') }}"></script> <!-- Função para listar os arquivos de cada categoria -->
 

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Arquivo
 {
-    public static function create(Receita|DespesaRecorrente $obj, $arq, string $tipo)
+    public static function create(Receita|DespesaRecorrente $obj, $arq)
     {
         $file = $obj->arquivos()->create([
             'tipo' => $arq->getMimeType(),
@@ -24,6 +24,11 @@ class Arquivo
 
         self::storeFileAndSave($arq, $file);
         return $file;
+    }
+
+    public static function list(Receita|DespesaRecorrente $obj)
+    {
+        return $obj->arquivos()->get();
     }
 
     private function deleteFile($despesa, string $tipo):void

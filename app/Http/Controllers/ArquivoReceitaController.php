@@ -25,9 +25,15 @@ class ArquivoReceitaController extends Controller
         return $this->arquivoReceitaExceptions->create($data);
     }
 
-    public function getFile(string $idArquivo)
+    public function get(string $idArquivo)
     {
         $file = ArquivoReceita::where('id', $idArquivo)->first();
         return Storage::response($file->id.'.'.$file->extensao);
+    }
+
+    public function list(string $id)
+    {
+        return $this->arquivoReceitaExceptions->list($id);
+
     }
 }

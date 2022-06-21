@@ -2,8 +2,10 @@
 
 namespace App\Repositories\Exceptions;
 
+use App\Helpers\ResponseJson;
 use App\Repositories\Rules\Arquivo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class Exceptions
 {
@@ -19,23 +21,31 @@ class Exceptions
     {
         try{
             DB::beginTransaction();
-            $file = Arquivo::create($this->getObj($data), $data["file"], $this->tipo);
+            $file = Arquivo::create($this->getObj($data["id"]), $data["file"]);
             DB::commit();
 
-            return response()->json($file, '200');
+            return Response::json($file, 200);
 
         } catch(\Exception $exception){
             DB::rollBack();
-            return response()->json([
-                "message" => $exception->getMessage(),
-                "code" => $exception->getCode()
-            ]);
+            return Response::json($exception->getMessage(), $exception->getCode());
         }
     }
 
-    private function getObj(array $data)
+    public function list(string $id)
     {
-        return $this->model->where("id", $data["id"])->first();
+        try{
+            $files = Arquivo::list($this->getObj($id));
+            return Response::json($files, 200);
+
+        } catch(\Exception $exception){
+            return Response::json($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    private function getObj(string $id)
+    {
+        return $this->model->where("id", $id)->first();
     }
 
     protected function resolveModel()

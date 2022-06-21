@@ -14,5 +14,6 @@ function editarReceitaModal(receita){
      */
     $(".input-file.receita").addClass(receita.id);
 
+    listarArquivos(receita.id, 'receita');
     $('#editarreceitamodal').modal('show');
 }

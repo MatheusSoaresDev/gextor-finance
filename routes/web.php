@@ -34,6 +34,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/despesa/recorrente', [DespesaRecorrenteController::class, 'update'])->name('despesaRecorrente');
     Route::delete('/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'delete'])->name('deleteDespesaRecorrente');
 
-    Route::post('/file/receita/anexar', [ArquivoReceitaController::class, 'create']);
-    Route::get('/file/receita/{id}', [ArquivoReceitaController::class, 'getFile']);
+    /* Arquivos Receita */
+    Route::post('/file/receita/anexar', [ArquivoReceitaController::class, 'create']); // Anexa o arquivo de receita;
+    Route::get('/file/receita/{id}', [ArquivoReceitaController::class, 'get']); // Abre o arquivo;
+    Route::get('/file/receita/list/{id}', [ArquivoReceitaController::class, 'list']); // Lista todos os arquivos respectivos à receita;
+
+
 });

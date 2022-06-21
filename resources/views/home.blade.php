@@ -144,7 +144,6 @@
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
                                         <li><a class="dropdown-item" onclick="editarReceitaModal({{ $receita }});">Editar</a></li>
-                                        @if(count($receita->arquivos) > 0) <li><hr class="dropdown-divider"></li>@endif
                                     </ul>
 
                                 </div>
@@ -184,18 +183,14 @@
                                 </td>
                                 <td style="text-align: center;">
                                     <div class="dropdown">
-                                        <button class="btn btn-primary dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa-solid fa-bars"></i>
-                                        </button>
+                                        <button class="btn btn-primary dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
                                             <li><a class="dropdown-item" onclick="editarDespesaRecorrenteModal({{ $despesa }});">Editar</a></li>
-                                            @if(count($despesa->arquivos) > 0) <li><hr class="dropdown-divider"></li>@endif
 
                                             @foreach($despesa->arquivos as $arquivos)
                                                 <li><a class="dropdown-item" href="/file/despesa/recorrente/{{ $arquivos->id }}" target="_blank">{{ ucfirst($arquivos->tipo_documento) }}</a></li>
                                             @endforeach
 
-                                            @if(count($despesa->arquivos) > 0) <li><hr class="dropdown-divider"></li>@endif
                                             <form method="POST" id="formExcluirDespesaRecorrente{{ $despesa->id }}" action="{{ route('deleteDespesaRecorrente', $despesa->id) }}">
                                                 @method('DELETE')
                                                 @csrf
