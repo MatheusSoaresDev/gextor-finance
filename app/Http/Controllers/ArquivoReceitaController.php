@@ -36,4 +36,12 @@ class ArquivoReceitaController extends Controller
         return $this->arquivoReceitaExceptions->list($id);
 
     }
+
+    public function alteraTipo(Request $request)
+    {
+        $data = $request->only(['id_obj', 'id_file', 'tipo']);
+        return $this->arquivoReceitaExceptions->alteraTipo($data);
+    }
 }
+
+

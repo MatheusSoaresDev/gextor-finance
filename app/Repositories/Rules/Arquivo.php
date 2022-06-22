@@ -31,6 +31,14 @@ class Arquivo
         return $obj->arquivos()->get();
     }
 
+    public static function alteraTipo(Receita|DespesaRecorrente $obj, array $data)
+    {
+        $file = $obj->arquivos()->find($data["id_file"]);
+        $file->tipo_documento = $data["tipo"];
+        $file->save();
+        return $file;
+    }
+
     private function deleteFile($despesa, string $tipo):void
     {
         $deleteFile = $despesa->arquivos->where("id_despesa_recorrente", $despesa->id)->where("tipo_documento", $tipo)->first();

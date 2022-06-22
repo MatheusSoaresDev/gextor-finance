@@ -176,60 +176,8 @@
                                 </tr>
                             </thead>
                             <tbody id="tbody-receita">
-                                <!--<tr>
-                                    <th scope="row">1</th>
-                                    <td>fatura0.pdf</td>
-                                    <td>application/pdf</td>
-                                    <td>
-                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                            <option value="1">Boleto</option>
-                                            <option value="2">Comprovante</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <a href=""><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button></a>
-                                        <button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>fatura0.pdf</td>
-                                    <td>application/pdf</td>
-                                    <td style="text-align: center;">
-                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                            <option value="1">Boleto</option>
-                                            <option value="2">Comprovante</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-file"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-success btn-sm">
-                                            <i class="fa-solid fa-file-arrow-down"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>fatura0.pdf</td>
-                                    <td>application/pdf</td>
-                                    <td>
-                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                            <option value="1">Boleto</option>
-                                            <option value="2">Comprovante</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button>
-                                        <button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
-                                </tr>-->
+
+                                <!-- Corpo da tabela; -->
 
                             </tbody>
                         </table>
@@ -243,7 +191,7 @@
                         <div class="d-grid gap-2 col-3 mx-auto">
                             <form method="POST" id="addFileReceitaForm" enctype="multipart/form-data">
                                 @csrf
-                                <label for="file-upload" class="custom-file-upload btn btn-primary"><i class="fa-solid fa-plus"></i>&nbspAdicionar arquivo</label>
+                                <label for="file-upload" class="custom-file-upload receita btn btn-primary"><i class="fa-solid fa-plus"></i>&nbspAdicionar arquivo</label>
                                 <input id="file-upload" onchange="anexarArquivo(this)" name="file" class="input-file receita addFileReceitaForm" type="file"/>
                             </form>
                         </div>
@@ -419,6 +367,12 @@
 <!-- Arquivos -->
 
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $('.modal').on('hide.bs.modal', function (event) {
         $(".error").remove();
         $(".is-invalid").removeClass("is-invalid");

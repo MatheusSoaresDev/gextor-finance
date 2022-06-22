@@ -28,7 +28,7 @@ class Exceptions
 
         } catch(\Exception $exception){
             DB::rollBack();
-            return Response::json($exception->getMessage(), $exception->getCode());
+            return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
         }
     }
 
@@ -39,7 +39,18 @@ class Exceptions
             return Response::json($files, 200);
 
         } catch(\Exception $exception){
-            return Response::json($exception->getMessage(), $exception->getCode());
+            return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
+        }
+    }
+
+    public function alteraTipo(array $data)
+    {
+        try{
+            $files = Arquivo::alteraTipo($this->getObj($data["id_obj"]), $data);
+            return Response::json($files, 200);
+
+        } catch(\Exception $exception){
+            return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
         }
     }
 

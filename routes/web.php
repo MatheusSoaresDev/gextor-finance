@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\ArquivoReceitaController;
 use App\Http\Controllers\DespesaRecorrenteController;
-use App\Http\Controllers\DropboxController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReceitaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +22,8 @@ Auth::routes();
 Route::get('/', function (){ return view('auth.login'); });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::put('/change/data', [App\Http\Controllers\HomeController::class, 'changeData'])->name('changeData');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::put('/change/data', [HomeController::class, 'changeData'])->name('changeData');
 
     Route::post('/receita', [ReceitaController::class, 'create'])->name('receita');
     Route::put('/receita', [ReceitaController::class, 'update'])->name('receita');
@@ -39,5 +38,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/file/receita/{id}', [ArquivoReceitaController::class, 'get']); // Abre o arquivo;
     Route::get('/file/receita/list/{id}', [ArquivoReceitaController::class, 'list']); // Lista todos os arquivos respectivos à receita;
 
-
+    Route::put('/file/receita/altera/tipo/', [ArquivoReceitaController::class, 'alteraTipo']);
 });

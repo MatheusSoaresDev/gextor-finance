@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nome_original');
             $table->string('extensao');
             $table->string('tamanho');
-            $table->string('tipo_documento')->nullable();
+            $table->enum('tipo_documento', ['c', 'b', 'cc'])->nullable();
 
             $table->string('id_receita');
             $table->foreign('id_receita')->references('id')->on('receita');

@@ -5,6 +5,7 @@ function anexarArquivo(formObj){
 
     const myForm = document.getElementById(form);
     const formData = new FormData(myForm);
+    const buttonFile = $(".custom-file-upload, ."+tipo);
 
     //Objetos modal
     const spinner = $("#spinner-"+tipo);
@@ -22,12 +23,15 @@ function anexarArquivo(formObj){
         processData: false,
         beforeSend : function (){
             spinner.css("display", 'block');
+            buttonFile.addClass("disabled");
         },
         error: function (xhr){
+            buttonFile.removeClass("disabled");
             spinner.css("display", 'none');
             $.notify("Não foi possível anexar o arquivo!", "error");
         },
         success: function(response){
+            buttonFile.removeClass("disabled");
             spinner.css("display", "none");
 
             tbody.append(`
@@ -53,12 +57,3 @@ function anexarArquivo(formObj){
         }
     });
 }
-
-function selectedTipo(tipoArquivo, tipoOption){
-    if(tipoArquivo == tipoOption){
-        return 'selected';
-    }
-
-    return null;
-}
-
