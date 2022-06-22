@@ -40,11 +40,11 @@ function anexarArquivo(formObj){
                     <td>${response.nome_original}</td>
                     <td>${response.tipo}</td>
                     <td>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <select class="form-select form-select-sm" id="selectTipo${response.id}" aria-label=".form-select-sm example" onchange="alterarTipo('${id}', '${response.id}', this, '${tipo}', '${response.tipo_documento}')">
                             <option value="">Selecione</option>
-                            <option value="b">Boleto</option>
-                            <option value="c">Comprovante</option>
-                            <option value="cc">Contracheque</option>
+                            <option value="b" ${selectedTipo(response.tipo_documento, 'b')}>Boleto</option>
+                            <option value="c" ${selectedTipo(response.tipo_documento, 'c')}>Comprovante</option>
+                            <option value="cc" ${selectedTipo(response.tipo_documento, 'cc')}>Contracheque</option>
                         </select>
                     </td>
                     <td>
