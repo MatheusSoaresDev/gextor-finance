@@ -25,22 +25,33 @@ class ArquivoReceitaController extends Controller
         return $this->arquivoReceitaExceptions->create($data);
     }
 
-    public function get(string $idArquivo)
+    public function get(string $id)
+    {
+        return $this->arquivoReceitaExceptions->get($id);
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->only(['id_obj', 'id_file', 'tipo']);
+        return $this->arquivoReceitaExceptions->update($data);
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->only(['id_obj', 'id_file', 'tipo']);
+        return $this->arquivoReceitaExceptions->delete($data);
+    }
+
+    public function viewFile(string $idArquivo)
     {
         $file = ArquivoReceita::where('id', $idArquivo)->first();
         return Storage::response($file->id.'.'.$file->extensao);
     }
 
-    public function list(string $id)
+    public function downloadFile(string $idArquivo)
     {
-        return $this->arquivoReceitaExceptions->list($id);
-
-    }
-
-    public function alteraTipo(Request $request)
-    {
-        $data = $request->only(['id_obj', 'id_file', 'tipo']);
-        return $this->arquivoReceitaExceptions->alteraTipo($data);
+        $file = ArquivoReceita::where('id', $idArquivo)->first();
+        return Storage::download($file->id.'.'.$file->extensao);
     }
 }
 

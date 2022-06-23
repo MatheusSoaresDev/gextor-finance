@@ -17,7 +17,7 @@ function anexarArquivo(formObj){
     $.ajax({
         type:'POST',
         //dataType: 'json',
-        url: '/file/'+tipo+'/anexar',
+        url: '/file/'+tipo+'/',
         data: formData,
         contentType: false,
         processData: false,
@@ -31,6 +31,8 @@ function anexarArquivo(formObj){
             $.notify("Não foi possível anexar o arquivo!", "error");
         },
         success: function(response){
+            $("#tr-not-file-"+tipo).remove(); //remove a linha que informa caso não haja arquivos anexados.
+
             buttonFile.removeClass("disabled");
             spinner.css("display", "none");
 
@@ -48,8 +50,8 @@ function anexarArquivo(formObj){
                         </select>
                     </td>
                     <td>
-                        <a href="/file/receita/${response.id}" target="_blank"><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button></a>
-                        <button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button>
+                        <a href="/file/receita/view/${response.id}" target="_blank"><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button></a>
+                        <a href="/file/receita/download/${response.id}"><button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button></a>
                         <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                     </td>
                 </tr>

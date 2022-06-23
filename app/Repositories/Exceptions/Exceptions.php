@@ -32,10 +32,10 @@ class Exceptions
         }
     }
 
-    public function list(string $id)
+    public function get(string $id)
     {
         try{
-            $files = Arquivo::list($this->getObj($id));
+            $files = Arquivo::get($this->getObj($id));
             return Response::json($files, 200);
 
         } catch(\Exception $exception){
@@ -43,13 +43,28 @@ class Exceptions
         }
     }
 
-    public function alteraTipo(array $data)
+    public function update(array $data)
     {
         try{
-            $files = Arquivo::alteraTipo($this->getObj($data["id_obj"]), $data);
+            $files = Arquivo::update($this->getObj($data["id_obj"]), $data);
             return Response::json($files, 200);
 
         } catch(\Exception $exception){
+            return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
+        }
+    }
+
+    public function delete(array $data)
+    {
+        try{
+            DB::beginTransaction();
+            $files = Arquivo::delete($this->getObj($data["id_obj"]), $data);
+            DB::commit();
+
+            return Response::json($files, 200);
+
+        } catch(\Exception $exception){
+            DB::rollBack();
             return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
         }
     }

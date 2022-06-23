@@ -26,12 +26,16 @@ class Arquivo
         return $file;
     }
 
-    public static function list(Receita|DespesaRecorrente $obj)
+    public static function get(Receita|DespesaRecorrente $obj)
     {
-        return $obj->arquivos()->get();
+        $files = $obj->arquivos()->get();
+        if($files->count() < 1){
+            throw new \Exception("Não há arquivos anexados para este objeto.", 404);
+        }
+        return $files;
     }
 
-    public static function alteraTipo(Receita|DespesaRecorrente $obj, array $data)
+    public static function update(Receita|DespesaRecorrente $obj, array $data)
     {
         $file = $obj->arquivos()->find($data["id_file"]);
         $file->tipo_documento = $data["tipo"];
@@ -39,12 +43,13 @@ class Arquivo
         return $file;
     }
 
-    private function deleteFile($despesa, string $tipo):void
+    public static function delete(Receita|DespesaRecorrente $obj, array $data):void
     {
-        $deleteFile = $despesa->arquivos->where("id_despesa_recorrente", $despesa->id)->where("tipo_documento", $tipo)->first();
-        if($deleteFile) {
-            Storage::disk('local')->delete('Arquivos/' . $deleteFile->id . '.' . $deleteFile->extensao);
+        $file = $obj->arquivos()->find($data["id_file"]);
+        if($file->delete()){
+            Storage::delete($file->id . '.' . $file->extensao);
         }
+
     }
 
     private static function storeFileAndSave(UploadedFile $arq, $file)

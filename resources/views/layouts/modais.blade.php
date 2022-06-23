@@ -362,6 +362,10 @@
         cursor: pointer;
     }
 
+    .riscado {
+        text-decoration: line-through;
+    }
+
 </style>
 
 <!-- Arquivos -->
