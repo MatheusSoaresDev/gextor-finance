@@ -168,7 +168,6 @@
                         <table class="table" id="table-receita" style="text-align: center; vertical-align: middle">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Formato</th>
                                     <th scope="col">Tipo</th>

@@ -37,8 +37,7 @@ function anexarArquivo(formObj){
             spinner.css("display", "none");
 
             tbody.append(`
-                <tr>
-                    <th scope="row">${$("#table-"+tipo+" tr").length}</th>
+                <tr id="${response.id}">
                     <td>${response.nome_original}</td>
                     <td>${response.tipo}</td>
                     <td>
@@ -52,7 +51,7 @@ function anexarArquivo(formObj){
                     <td>
                         <a href="/file/receita/view/${response.id}" target="_blank"><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button></a>
                         <a href="/file/receita/download/${response.id}"><button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button></a>
-                        <button type="button" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                        <button type="button" onclick="removeFile('${id}', '${response.id}', '${tipo}')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                     </td>
                 </tr>
             `);

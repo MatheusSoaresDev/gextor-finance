@@ -32,7 +32,6 @@ function listarArquivos(idObj, tipo){
             for(let i=0; i<response.length; i++){
                 tbody.append(`
                     <tr id="${response[i].id}">
-                        <th scope="row">${i+1}</th>
                         <td>${response[i].nome_original}</td>
                         <td>${response[i].tipo}</td>
                         <td>
