@@ -13,9 +13,9 @@ class Receita extends Model
     use HasFactory, HasPrimaryKeyUuid, Authenticatable;
 
     public $timestamps = true;
-    protected $fillable = ['nome', 'data', 'valor', 'status', 'boleto', 'documento', 'id_user'];
+    protected $fillable = ['nome', 'data', 'valor', 'status', 'comentario', 'id_user'];
     protected $table = 'receita';
-    protected $visible = ['id','nome', 'data', 'valor', 'status', 'boleto', 'documento', 'id_user'];
+    protected $visible = ['id','nome', 'data', 'valor', 'status', 'comentario', 'id_user'];
 
     public function arquivos()
     {
