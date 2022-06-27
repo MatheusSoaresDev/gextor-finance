@@ -17,3 +17,9 @@ function editarReceitaModal(receita){
     listarArquivos(receita.id, 'receita');
     $('#editarreceitamodal').modal('show');
 }
+
+function editarReceitaSubmit(){
+    if (window.confirm("Você realmente quer editar essa receita?")) {
+        document.getElementById('EditarReceita').submit();
+    }
+}

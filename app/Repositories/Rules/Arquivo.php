@@ -49,7 +49,6 @@ class Arquivo
         if($file->delete()){
             Storage::delete($file->id . '.' . $file->extensao);
         }
-
     }
 
     private static function storeFileAndSave(UploadedFile $arq, $file)

@@ -124,7 +124,7 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="dadosEditar" role="tabpanel" aria-labelledby="dadosEditar-tab" tabindex="0">
-                        <form method="POST" action="{{ route('receita') }}" id="EditarDespesaRecorrente">
+                        <form method="POST" action="{{ route('receita') }}" id="EditarReceita" onsubmit="return confirm('Tem certeza que deseja alterar essa receita?')">
                             @csrf
                             @method('put')
 
@@ -202,7 +202,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" onclick="document.getElementById('EditarDespesaRecorrente').submit();" class="btn btn-success">Editar</button>
+                <button type="submit" onclick="editarReceitaSubmit();" class="btn btn-success">Editar</button>
             </div>
         </div>
     </div>
