@@ -27,9 +27,16 @@ class ReceitaObserver
         $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
     }
 
-    public function updating(Receita $receita)
+    /*public function updating(Receita $receita)
     {
         $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
+    }*/
+
+    public function saving(Receita $receita)
+    {
+        if(str_contains($receita->valor, ',')){
+            $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
+        }
     }
 
     /**
