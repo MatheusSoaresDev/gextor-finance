@@ -1,8 +1,4 @@
 function anexarArquivo(formObj, idForm, tipo){
-    /*const tipo = formObj.classList[1];
-    const form = formObj.classList[2];
-    const id = formObj.classList[3];*/
-
     const myForm = document.getElementById(idForm);
     const formData = new FormData(myForm);
     const buttonFile = $(".custom-file-upload, ."+tipo);

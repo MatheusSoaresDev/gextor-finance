@@ -388,6 +388,9 @@
 <script type="text/javascript" src="{{ asset('js/functions/submitEditarDespesaRecorrente.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 
 <script type="text/javascript" src="{{ asset('js/functions/aumentaDiminuiModal.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
-<script type="text/javascript" src="{{ asset('js/functions/addFiles.js') }}"></script> <!-- Função para adicionar Arquivos -->
-<script type="text/javascript" src="{{ asset('js/functions/listFiles.js') }}"></script> <!-- Função para listar os arquivos de cada categoria -->
+
+<script type="text/javascript" src="{{ asset('js/functions/arquivos/addFiles.js') }}"></script> <!-- Função para adicionar Arquivos -->
+<script type="text/javascript" src="{{ asset('js/functions/arquivos/listFiles.js') }}"></script> <!-- Função para listar os arquivos de cada categoria -->
+<script type="text/javascript" src="{{ asset('js/functions/arquivos/alterarTipo.js') }}"></script> <!-- Função para listar os arquivos de cada categoria -->
+<script type="text/javascript" src="{{ asset('js/functions/arquivos/removeFile.js') }}"></script> <!-- Função para listar os arquivos de cada categoria -->
 
