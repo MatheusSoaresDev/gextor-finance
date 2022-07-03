@@ -1,5 +1,6 @@
 function editarReceitaModal(receita){
     const valorSemPonto = parseFloat(receita.valor);
+    const buttonUpload = $("#file-upload");
 
     $("#editar_id_receita").val(receita.id);
     $("#editar_nome_receita").val(receita.nome);
@@ -12,7 +13,8 @@ function editarReceitaModal(receita){
      * Esse comando insere o id da receita na classe do file-upload da modal de receita.
      * Com isso eu consigo as informações necessárias para anexar o arquivo à minha receita.
      */
-    $(".input-file.receita").addClass(receita.id);
+
+    $("#id_receita").val(receita.id);
 
     listarArquivos(receita.id, 'receita');
     $('#editarreceitamodal').modal('show');

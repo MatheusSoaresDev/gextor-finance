@@ -191,7 +191,8 @@
                             <form method="POST" id="addFileReceitaForm" enctype="multipart/form-data">
                                 @csrf
                                 <label for="file-upload" class="custom-file-upload receita btn btn-primary"><i class="fa-solid fa-plus"></i>&nbspAdicionar arquivo</label>
-                                <input id="file-upload" onchange="anexarArquivo(this)" name="file" class="input-file receita addFileReceitaForm" type="file"/>
+                                <input id="file-upload" onchange="anexarArquivo(this, 'addFileReceitaForm', 'receita')" name="file" class="input-file" type="file"/>
+                                <input type="hidden" id="id_receita" name="id" value="">
                             </form>
                         </div>
 

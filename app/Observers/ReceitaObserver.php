@@ -24,7 +24,7 @@ class ReceitaObserver
     {
         $receita->data = ((new \DateTime(''))->setDate(Request::session()->get('data')['ano'], Request::session()->get('data')['mes'], '01'))->format("Y-m-d");
         $receita->id_user = Auth::id();
-        $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
+        $receita->valor = str_replace([','],['.'], $receita->valor);
     }
 
     /*public function updating(Receita $receita)

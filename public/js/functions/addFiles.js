@@ -1,9 +1,9 @@
-function anexarArquivo(formObj){
-    const tipo = formObj.classList[1];
+function anexarArquivo(formObj, idForm, tipo){
+    /*const tipo = formObj.classList[1];
     const form = formObj.classList[2];
-    const id = formObj.classList[3];
+    const id = formObj.classList[3];*/
 
-    const myForm = document.getElementById(form);
+    const myForm = document.getElementById(idForm);
     const formData = new FormData(myForm);
     const buttonFile = $(".custom-file-upload, ."+tipo);
 
@@ -11,8 +11,8 @@ function anexarArquivo(formObj){
     const spinner = $("#spinner-"+tipo);
     const tbody = $("#tbody-"+tipo);
 
+    const id = formData.getAll("id_"+tipo);
     formData.append('tipo', tipo);
-    formData.append('id', id);
 
     $.ajax({
         type:'POST',
