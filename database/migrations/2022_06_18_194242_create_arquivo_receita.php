@@ -22,7 +22,10 @@ return new class extends Migration
             $table->enum('tipo_documento', ['c', 'b', 'cc'])->nullable();
 
             $table->string('id_receita');
-            $table->foreign('id_receita')->references('id')->on('receita');
+            $table->foreign('id_receita')
+                ->references('id')
+                ->on('receita')
+                ->onDelete('cascade');;
 
             $table->timestamps();
         });

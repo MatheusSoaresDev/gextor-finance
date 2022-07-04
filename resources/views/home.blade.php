@@ -144,6 +144,12 @@
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
                                         <li><a class="dropdown-item" onclick="editarReceitaModal({{ $receita }});">Editar</a></li>
+
+                                        <form method="POST" id="formExcluirReceita{{ $receita->id }}" action="{{ route('deleteReceita', $receita->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <li><a onclick="submitDelete('{{ $receita->id }}', 'formExcluirReceita{{ $receita->id }}', 'receita')" class="dropdown-item" href="#">Excluir</a></li>
+                                        </form>
                                     </ul>
 
                                 </div>
@@ -215,6 +221,8 @@
     @include('layouts.modais')
 
     <script type="text/javascript" src="{{ asset('js/validators/CreateReceitaValidator.js') }}"></script> <!-- Validator do formulário de criação de receita -->
+    <script type="text/javascript" src="{{ asset('js/validators/UpdateReceitaValidator.js') }}"></script> <!-- Validator do formulário de criação de receita -->
+
     <script type="text/javascript" src="{{ asset('js/validators/CreateDespesaValidator.js') }}"></script> <!-- Validator do formulário de criação de despesa recorrente -->
     <script type="text/javascript" src="{{ asset('js/validators/EditarDespesaValidator.js') }}"></script> <!-- Validator do formulário de edição de despesa recorrente -->
 

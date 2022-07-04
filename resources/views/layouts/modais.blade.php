@@ -67,9 +67,7 @@
                     <div class="mb-3">
                         <label for="nome_receita" class="form-label">Nome da receita</label>
                         <input type="text" class="form-control" name="nome" placeholder="Nome da receita" id="nome_receita" aria-describedby="emailHelp" required>
-                        <div id="validationServer03Feedback" class="invalid-feedback">
-
-                        </div>
+                        <div id="validationServer03Feedback" class="invalid-feedback"></div>
                     </div>
 
                     <div class="mb-3">
@@ -77,16 +75,6 @@
                         <input type="text" id="valor_receita" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="000.000.000.000.000,00" data-mask-reverse="true" required>
                         <div id="validationServer03Feedback" class="invalid-feedback"></div>
                     </div>
-
-                    <!--<div class="mb-3">
-                        <label for="forma_pagamento_receita" class="form-label">Forma de Pagamento</label>
-                        <select name="forma_pagamento" id="forma_pagamento_despesa_recorrente" class="form-control" required>
-                            <option value="">Forma de pagamento</option>
-                            <option value="b">Boleto</option>
-                            <option value="p">Pix</option>
-                            <option value="d">Débito automático</option>
-                        </select>
-                    </div>-->
 
                     <div class="mb-3">
                         <label for="comentario_receita" class="form-label">Comentário</label>
@@ -124,7 +112,7 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="dadosEditar" role="tabpanel" aria-labelledby="dadosEditar-tab" tabindex="0">
-                        <form method="POST" action="{{ route('receita') }}" id="EditarReceita" onsubmit="return confirm('Tem certeza que deseja alterar essa receita?')">
+                        <form method="POST" action="{{ route('receita') }}" id="editarReceita" onsubmit="return confirm('Tem certeza que deseja editar essa receita?');">
                             @csrf
                             @method('put')
 
@@ -202,7 +190,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" onclick="editarReceitaSubmit();" class="btn btn-success">Editar</button>
+                <button form="editarReceita" type="submit" class="btn btn-success">Editar</button>
             </div>
         </div>
     </div>
@@ -362,10 +350,6 @@
         cursor: pointer;
     }
 
-    .riscado {
-        text-decoration: line-through;
-    }
-
 </style>
 
 <!-- Arquivos -->
@@ -383,9 +367,8 @@
     })
 </script>
 
-<script type="text/javascript" src="{{ asset('js/functions/editarDespesaRecorrenteModal.js') }}"></script> <!-- Abrir modal de edição de despesa recorrente -->
 <script type="text/javascript" src="{{ asset('js/functions/editarReceitaModal.js') }}"></script> <!-- Abrir modal de edição de receita recorrente -->
-<script type="text/javascript" src="{{ asset('js/functions/submitEditarDespesaRecorrente.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
+<script type="text/javascript" src="{{ asset('js/functions/submitDelete.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 
 <script type="text/javascript" src="{{ asset('js/functions/aumentaDiminuiModal.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 
@@ -394,3 +377,4 @@
 <script type="text/javascript" src="{{ asset('js/functions/arquivos/alterarTipo.js') }}"></script> <!-- Função para listar os arquivos de cada categoria -->
 <script type="text/javascript" src="{{ asset('js/functions/arquivos/removeFile.js') }}"></script> <!-- Função para listar os arquivos de cada categoria -->
 
+<script type="text/javascript" src="{{ asset('js/functions/submitDelete.js') }}"></script> <!-- Abrir modal de edição de despesa recorrente -->

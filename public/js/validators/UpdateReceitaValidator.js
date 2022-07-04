@@ -1,7 +1,6 @@
 jQuery(document).ready(function(){
-    jQuery('#criarReceita').validate({
+    jQuery('#editarReceita').validate({
         rules: {
-            // Os campos já são auto declarados no formulário;
         },
         highlight: function (input) {
             $(input).addClass('is-invalid');
