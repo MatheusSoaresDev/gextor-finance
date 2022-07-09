@@ -22,6 +22,7 @@ class ReceitaController extends Controller
         $data = $request->only(['nome', 'valor', 'comentario']);
         $receita = $this->receitaRepository->create($data);
         return self::redirect($receita, "cadastrar", "home");
+        //
     }
 
     public function update(UpdateReceitaRequest $request)
