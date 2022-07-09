@@ -36,5 +36,4 @@ class ReceitaController extends Controller
         $delete = $this->receitaRepository->delete($id);
         return self::redirect($delete, "remover", "home");
     }
-
 }

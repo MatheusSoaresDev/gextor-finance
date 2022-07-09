@@ -7,7 +7,7 @@ function anexarArquivo(formObj, idForm, tipo){
     const spinner = $("#spinner-"+tipo);
     const tbody = $("#tbody-"+tipo);
 
-    const id = formData.getAll("id_"+tipo);
+    const id = formData.getAll("id");
     formData.append('tipo', tipo);
 
     $.ajax({

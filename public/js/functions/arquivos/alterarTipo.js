@@ -6,6 +6,8 @@ function alterarTipo(idObj, id_file, selected, tipoDoc, tipoDocAtual){
         tipo : tipo
     };
 
+    console.log(json);
+
     $.ajax({
         type:'put',
         dataType: 'json',
