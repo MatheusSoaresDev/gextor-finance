@@ -11,7 +11,7 @@ function anexarArquivo(formObj, idForm, tipo){
     formData.append('tipo', tipo);
 
     $.ajax({
-        type:'POST',
+        type:'post',
         //dataType: 'json',
         url: '/file/'+tipo+'/',
         data: formData,
