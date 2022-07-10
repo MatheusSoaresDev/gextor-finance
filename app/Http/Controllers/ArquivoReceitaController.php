@@ -44,14 +44,12 @@ class ArquivoReceitaController extends Controller
 
     public function viewFile(string $idArquivo)
     {
-        $file = ArquivoReceita::where('id', $idArquivo)->first();
-        return Storage::response($file->id.'.'.$file->extensao);
+        return $this->arquivoReceitaExceptions->viewFile($idArquivo, ArquivoReceita::class);
     }
 
     public function downloadFile(string $idArquivo)
     {
-        $file = ArquivoReceita::where('id', $idArquivo)->first();
-        return Storage::download($file->id.'.'.$file->extensao);
+        return $this->arquivoReceitaExceptions->downloadFile($idArquivo, ArquivoReceita::class);
     }
 }
 

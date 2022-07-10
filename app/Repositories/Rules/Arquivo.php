@@ -2,11 +2,13 @@
 
 namespace App\Repositories\Rules;
 
+use App\Models\Arquivos\ArquivoReceita;
 use App\Models\DespesaRecorrente;
 use App\Models\Receita;
 use App\Models\User;
 use App\Models\ArquivoDespesaRecorrente as ArquivoModel;
 use App\Repositories\Transformers\Arquivo\TransformArquivo;
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,7 +32,7 @@ class Arquivo
     {
         $files = $obj->arquivos()->get();
         if($files->count() < 1){
-            throw new \Exception("Não há arquivos anexados para este objeto.", 404);
+            throw new Exception("Não há arquivos anexados para este objeto.", 404);
         }
         return $files;
     }
@@ -53,8 +55,50 @@ class Arquivo
         return $file;
     }
 
+    /**
+     * @throws Exception
+     */
+    public static function viewFile(string $idArquivo, $tipoArquivo)
+    {
+        $fileDB = self::getFileDB($idArquivo, $tipoArquivo);
+        $fileAws = self::validateFileAWS($fileDB);
+
+        return Storage::response($fileDB->id.'.'.$fileDB->extensao);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function downloadFile(string $idArquivo, $tipoArquivo)
+    {
+        $fileDB = self::getFileDB($idArquivo, $tipoArquivo);
+        $fileAws = self::validateFileAWS($fileDB);
+
+        return Storage::download($fileDB->id.'.'.$fileDB->extensao, $fileDB->nome_original);
+    }
+
     private static function storeFileAndSave(UploadedFile $arq, $file)
     {
         $arquivo = $arq->storeAs('', $file->id.'.'.$arq->getClientOriginalExtension());
+    }
+
+    private static function getFileDB(string $idArquivo, $tipoArquivo)
+    {
+        $file = $tipoArquivo::where('id', $idArquivo)->first();
+        if(!$file){
+            throw new Exception("Arquivo não encontrado!", 404);
+        }
+
+        return $file;
+    }
+
+    private static function validateFileAWS($fileDB)
+    {
+        $getFileAWS = Storage::get($fileDB->id.'.'.$fileDB->extensao);
+        if(!$getFileAWS){
+            throw new Exception("Arquivo não encontrado no servidor de arquivos!", 404);
+        }
+
+        return true;
     }
 }

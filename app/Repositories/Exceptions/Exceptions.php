@@ -69,6 +69,26 @@ class Exceptions
         }
     }
 
+    public function viewFile(string $idArquivo, $tipoArquivo)
+    {
+        try {
+            return Arquivo::viewFile($idArquivo, $tipoArquivo);
+
+        } catch (\Exception $exception){
+            return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
+        }
+    }
+
+    public function downloadFile(string $idArquivo, $tipoArquivo)
+    {
+        try {
+            return Arquivo::downloadFile($idArquivo, $tipoArquivo);
+
+        } catch (\Exception $exception){
+            return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
+        }
+    }
+
     private function getObj(string $id)
     {
         return $this->model->where("id", $id)->first();
