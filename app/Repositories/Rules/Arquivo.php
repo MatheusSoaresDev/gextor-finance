@@ -72,7 +72,7 @@ class Arquivo
     public static function downloadFile(string $idArquivo, $tipoArquivo)
     {
         $fileDB = self::getFileDB($idArquivo, $tipoArquivo);
-        $fileAws = self::validateFileAWS($fileDB);
+        self::validateFileAWS($fileDB);
 
         return Storage::download($fileDB->id.'.'.$fileDB->extensao, $fileDB->nome_original);
     }
