@@ -2,7 +2,7 @@ function anexarArquivo(formObj, idForm, tipo){
     const myForm = document.getElementById(idForm);
     const formData = new FormData(myForm);
     const buttonFile = $(".custom-file-upload, ."+tipo);
-
+    
     //Objetos modal
     const spinner = $("#spinner-"+tipo);
     const tbody = $("#tbody-"+tipo);
@@ -11,7 +11,7 @@ function anexarArquivo(formObj, idForm, tipo){
     formData.append('tipo', tipo);
 
     $.ajax({
-        type:'post',
+        type:'POST',
         //dataType: 'json',
         url: '/file/'+tipo+'/',
         data: formData,
