@@ -6,6 +6,7 @@ use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ReceitaObserver
 {
@@ -39,6 +40,15 @@ class ReceitaObserver
         }
     }
 
+    public function deleting(Receita $receita){
+        $arquivos = $receita->arquivos()->get();
+
+        foreach ($arquivos as $arq){
+            Storage::delete($arq->id . '.' . $arq->extensao);
+            $arq->delete();
+        }
+    }
+
     /**
      * Handle the Receita "deleted" event.
      *
@@ -47,7 +57,7 @@ class ReceitaObserver
      */
     public function deleted(Receita $receita)
     {
-        //
+
     }
 
     /**
