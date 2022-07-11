@@ -17,15 +17,14 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('nome');
             $table->date('data');
-            $table->string('valor');
+            $table->decimal('valor');
             $table->string('forma_pagamento');
             $table->boolean('status')->default(0);
             $table->string('comentario')->nullable();
+            $table->timestamps();
 
             $table->string('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-
-            $table->timestamps();
         });
     }
 

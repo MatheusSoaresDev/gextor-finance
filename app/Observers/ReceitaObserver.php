@@ -28,11 +28,6 @@ class ReceitaObserver
         $receita->valor = str_replace([','],['.'], $receita->valor);
     }
 
-    /*public function updating(Receita $receita)
-    {
-        $receita->valor = str_replace(['.',','],['','.'], $receita->valor);
-    }*/
-
     public function saving(Receita $receita)
     {
         if(str_contains($receita->valor, ',')){

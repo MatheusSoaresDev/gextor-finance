@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('id_receita')
                 ->references('id')
                 ->on('receita')
-                ->onDelete('cascade');;
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

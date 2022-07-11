@@ -19,10 +19,13 @@ return new class extends Migration
             $table->string('nome_original');
             $table->string('extensao');
             $table->string('tamanho');
-            $table->string('tipo_documento');
+            $table->enum('tipo_documento', ['c', 'b'])->nullable();
 
             $table->string('id_despesa_recorrente');
-            $table->foreign('id_despesa_recorrente')->references('id')->on('despesa_recorrente');
+            $table->foreign('id_despesa_recorrente')
+                ->references('id')
+                ->on('despesa_recorrente')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Arquivos');
+        Schema::dropIfExists('arquivo_despesa_recorrente');
     }
 };

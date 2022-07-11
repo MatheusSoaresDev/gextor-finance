@@ -24,12 +24,13 @@ class UpdateDespesaRecorrenteRequest extends FormRequest
     public function rules()
     {
         return [
+            "id" => "required",
             "nome" => "required",
-            "valor" => "required|numeric",
+            "valor" => "required",
             "forma_pagamento" => "required|in:p,b,d",
 
-            "boleto" => "nullable|max:2000|mimes:pdf,jpeg,png",
-            "comprovante" => "nullable|max:2000|mimes:pdf,jpeg,png",
+            /*"boleto" => "nullable|max:2000|mimes:pdf,jpeg,png",
+            "comprovante" => "nullable|max:2000|mimes:pdf,jpeg,png",*/
         ];
     }
 

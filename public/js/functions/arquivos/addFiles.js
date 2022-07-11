@@ -1,8 +1,13 @@
 function anexarArquivo(formObj, idForm, tipo){
+
+    console.log(formObj);
+    console.log(idForm);
+    console.log(tipo);
+
     const myForm = document.getElementById(idForm);
     const formData = new FormData(myForm);
     const buttonFile = $(".custom-file-upload, ."+tipo);
-    
+
     //Objetos modal
     const spinner = $("#spinner-"+tipo);
     const tbody = $("#tbody-"+tipo);

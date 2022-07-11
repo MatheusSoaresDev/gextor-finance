@@ -14,7 +14,7 @@ class DespesaRecorrenteRepository extends AbstractRepository implements DespesaR
 
     public function getDespesaPorMes()
     {
-        return $this->model->with(['Arquivos'])
+        return $this->all()
             ->whereMonth('data', Request::session()->get('data')['mes'])
             ->whereYear('data', Request::session()->get('data')['ano'])
             ->get();

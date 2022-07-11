@@ -100,10 +100,10 @@
 
         <ul class="nav nav-pills mt-4" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-receita-tab" data-bs-toggle="pill" data-bs-target="#pills-receitas" type="button" role="tab" aria-controls="pills-receitas" aria-selected="true">Receitas</button>
+                <button class="nav-link" id="pills-receita-tab" data-bs-toggle="pill" data-bs-target="#pills-receitas" type="button" role="tab" aria-controls="pills-receitas" aria-selected="true">Receitas</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Despesas Recorrentes</button>
+                <button class="nav-link active" id="pills-despesa-recorrente-tab" data-bs-toggle="pill" data-bs-target="#pills-despesa-recorrente" type="button" role="tab" aria-controls="pills-despesa-recorrente" aria-selected="true">Despesas Recorrentes</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Despesas Parceladas</button>
@@ -114,7 +114,7 @@
         </ul>
 
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active p-4" id="pills-receitas" role="tabpanel" aria-labelledby="pills-receita-tab" tabindex="0">
+            <div class="tab-pane fade p-4" id="pills-receitas" role="tabpanel" aria-labelledby="pills-receita-tab" tabindex="0">
                 <table class="table" style="text-align: center;">
                     <thead>
                         <tr>
@@ -163,7 +163,7 @@
                 </table>
             </div>
 
-            <div class="tab-pane fade active p-4" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+            <div class="tab-pane fade show active p-4" id="pills-despesa-recorrente" role="tabpanel" aria-labelledby="pills-despesa-recorrente-tab" tabindex="0">
                 <table class="table" style="text-align: center;">
                     <thead>
                         <tr>
@@ -193,14 +193,12 @@
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
                                             <li><a class="dropdown-item" onclick="editarDespesaRecorrenteModal({{ $despesa }});">Editar</a></li>
 
-                                            @foreach($despesa->arquivos as $arquivos)
-                                                <li><a class="dropdown-item" href="/file/despesa/recorrente/{{ $arquivos->id }}" target="_blank">{{ ucfirst($arquivos->tipo_documento) }}</a></li>
-                                            @endforeach
-
                                             <form method="POST" id="formExcluirDespesaRecorrente{{ $despesa->id }}" action="{{ route('deleteDespesaRecorrente', $despesa->id) }}">
                                                 @method('DELETE')
                                                 @csrf
-                                                <li><a onclick="submit('{{ $despesa->id }}')" class="dropdown-item" href="#">Excluir</a></li>
+                                                <!--<li><a onclick="submit('{{ $despesa->id }}')" class="dropdown-item" href="#">Excluir</a></li>-->
+
+                                                <li><a onclick="submitDelete('{{ $despesa->id }}', 'formExcluirDespesaRecorrente{{ $despesa->id }}', 'despesa')" class="dropdown-item" href="#">Excluir</a></li>
                                             </form>
                                         </ul>
                                     </div>
@@ -213,6 +211,7 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
         </div>

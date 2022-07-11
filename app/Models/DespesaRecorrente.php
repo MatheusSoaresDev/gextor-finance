@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Arquivos\ArquivoDespesaRecorrente;
 use App\Traits\HasPrimaryKeyUuid;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,10 +17,10 @@ class DespesaRecorrente extends Model
     use HasFactory, HasPrimaryKeyUuid, Authenticatable;
 
     public $timestamps = true;
-    protected $fillable = ['nome', 'data', 'valor', 'forma_pagamento', 'status', 'boleto', 'comprovante', 'comentario', 'id_user'];
+    protected $fillable = ['nome', 'data', 'valor', 'forma_pagamento', 'status', 'comentario', 'id_user'];
     protected $table = 'despesa_recorrente';
-    protected $visible = ['id', 'nome', 'data', 'valor', 'forma_pagamento', 'status', 'boleto', 'comprovante', 'comentario', 'id_user'];
-    protected $casts = ['valor' => 'float'];
+    protected $visible = ['id', 'nome', 'data', 'valor', 'forma_pagamento', 'status', 'comentario', 'id_user'];
+    //protected $casts = ['valor' => 'float'];
 
     public function user()
     {

@@ -27,12 +27,8 @@ class DespesaRecorrenteController extends Controller
     public function update(UpdateDespesaRecorrenteRequest $request)
     {
         $data = $request->only(['id', 'nome', 'valor', 'forma_pagamento', 'status', 'data', 'comentário']);
-        $files = $request->only(['id', 'boleto', 'comprovante']);
-
         $despesa = $this->despesaRecorrenteRepository->update($data);
-        $this->despesaRecorrenteRepository->anexarArquivos($files);
-
-        return self::redirect($despesa, "atualizar", "home");
+        return self::redirect($data, "atualizar", "home");
     }
 
     public function delete(string $id)

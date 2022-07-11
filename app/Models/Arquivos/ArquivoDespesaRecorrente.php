@@ -17,7 +17,7 @@ class ArquivoDespesaRecorrente extends Model
     protected $table = 'arquivo_despesa_recorrente';
     protected $visible = ['id', 'tipo', 'nome_original', 'extensao', 'tamanho', 'tipo_documento', 'id_despesa_recorrente'];
 
-    public function despesasRecorrentes()
+    public function despesaRecorrente()
     {
         return $this->belongsTo(DespesaRecorrente::class);
     }

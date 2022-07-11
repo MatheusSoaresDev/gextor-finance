@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArquivoDespesaRecorrenteController;
 use App\Http\Controllers\ArquivoReceitaController;
 use App\Http\Controllers\DespesaRecorrenteController;
 use App\Http\Controllers\HomeController;
@@ -39,11 +40,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/despesa/recorrente/{id}', [DespesaRecorrenteController::class, 'delete'])->name('deleteDespesaRecorrente');
 
     /* Arquivos Receita */
-    Route::post('/file/receita/', [ArquivoReceitaController::class, 'create'])->name("receitaArquivo"); // Anexa o arquivo de receita;
+    Route::post('/file/receita/', [ArquivoReceitaController::class, 'create']); // Anexa o arquivo de receita;
     Route::get('/file/receita/{id}', [ArquivoReceitaController::class, 'get']); // Lista todos os arquivos respectivos à receita;
-    Route::put('/file/receita/', [ArquivoReceitaController::class, 'update']);
-    Route::delete('/file/receita/', [ArquivoReceitaController::class, 'delete']);
-
     Route::get('/file/receita/view/{id}', [ArquivoReceitaController::class, 'viewFile']); // Abre o arquivo;
-    Route::get('/file/receita/download/{id}', [ArquivoReceitaController::class, 'downloadFile']); // Faz o download do arquivo.
+    Route::get('/file/receita/download/{id}', [ArquivoReceitaController::class, 'downloadFile']); // Faz o download do arquivo;
+    Route::put('/file/receita/', [ArquivoReceitaController::class, 'update']); // Altera o tipo do arquivo;
+    Route::delete('/file/receita/', [ArquivoReceitaController::class, 'delete']); // Remove o arquivo do aws e do banco de dados;
+
+    /* Arquivos despesa recorrente */
+    Route::post('/file/despesaRecorrente/', [ArquivoDespesaRecorrenteController::class, 'create']); // Anexa o arquivo da despesa recorrente;
+    Route::get('/file/despesaRecorrente/{id}', [ArquivoDespesaRecorrenteController::class, 'get']); // Lista todos os arquivos respectivos à despesa;
+
+
 });

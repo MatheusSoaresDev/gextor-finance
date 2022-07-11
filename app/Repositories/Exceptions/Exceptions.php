@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Exceptions;
 
-use App\Helpers\ResponseJson;
 use App\Repositories\Rules\Arquivo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;

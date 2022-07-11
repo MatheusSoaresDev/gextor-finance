@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\DespesaRecorrente;
+use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
@@ -17,7 +18,6 @@ class DespesaRecorrenteObserver
      */
     public function created(DespesaRecorrente $despesaRecorrente)
     {
-        Log::info("Valor salvo: ".$despesaRecorrente->valor);
 
     }
 
@@ -25,6 +25,14 @@ class DespesaRecorrenteObserver
     {
         $despesaRecorrente->data = ((new \DateTime(''))->setDate(Request::session()->get('data')['ano'], Request::session()->get('data')['mes'], '01'))->format("Y-m-d");
         $despesaRecorrente->id_user = Auth::id();
+        $despesaRecorrente->valor = str_replace([','],['.'], $despesaRecorrente->valor);
+    }
+
+    public function saving(DespesaRecorrente $despesaRecorrente)
+    {
+        if(str_contains($despesaRecorrente->valor, ',')){
+            $despesaRecorrente->valor = str_replace(['.',','],['','.'], $despesaRecorrente->valor);
+        }
     }
 
     /**

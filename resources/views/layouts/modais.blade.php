@@ -106,7 +106,7 @@
                     </li>
 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" onclick="aumentaModal('editarreceitamodal')" id="arquivos-tab" data-bs-toggle="pill" data-bs-target="#arquivos" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
+                        <button class="nav-link" onclick="aumentaModal('editarreceitamodal')" id="arquivos-tab-receita" data-bs-toggle="pill" data-bs-target="#arquivos-receita" type="button" role="tab" aria-controls="arquivos-receita" aria-selected="false">Arquivos</button>
                     </li>
                 </ul>
 
@@ -152,7 +152,7 @@
                         </form>
                     </div>
 
-                    <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">
+                    <div class="tab-pane fade" id="arquivos-receita" role="tabpanel" aria-labelledby="arquivos-tab-receita" tabindex="0">
                         <table class="table" id="table-receita" style="text-align: center; vertical-align: middle">
                             <thead>
                                 <tr>
@@ -213,7 +213,7 @@
 
                     <div class="mb-3">
                         <label for="valor_despesa_recorrente" class="form-label">Valor</label>
-                        <input type="text" id="valor_despesa_recorrente" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="0000.00" data-mask-reverse="true" required>
+                        <input type="text" id="valor_despesa_recorrente" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="000.000.000.000.000,00" data-mask-reverse="true" required>
                     </div>
 
                     <div class="mb-3">
@@ -249,23 +249,23 @@
                 <h5 class="modal-title" id="smallmodalLabel">Editar despesa do mês</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('despesaRecorrente') }}" id="EditarDespesaRecorrente" enctype="multipart/form-data">
-                <div class="modal-body">
-                    @csrf
-                    @method('put')
 
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="dadosEditar-tab" data-bs-toggle="pill" data-bs-target="#dadosEditar" type="button" role="tab" aria-controls="dadosEditar" aria-selected="true">Dados</button>
-                        </li>
+            <div class="modal-body">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" onclick="diminuiModal('editardespesarecorrentemodal')" id="dadosEditar-tab" data-bs-toggle="pill" data-bs-target="#dadosEditar-despesa-recorrente" type="button" role="tab" aria-controls="dadosEditar" aria-selected="true">Dados</button>
+                    </li>
 
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="arquivos-tab" data-bs-toggle="pill" data-bs-target="#arquivos" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
-                        </li>
-                    </ul>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" onclick="aumentaModal('editardespesarecorrentemodal')" id="arquivos-tab-despesa-recorrente" data-bs-toggle="pill" data-bs-target="#arquivos-despesa-recorrente" type="button" role="tab" aria-controls="arquivos" aria-selected="false">Arquivos</button>
+                    </li>
+                </ul>
 
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="dadosEditar" role="tabpanel" aria-labelledby="dadosEditar-tab" tabindex="0">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="dadosEditar-despesa-recorrente" role="tabpanel" aria-labelledby="dadosEditar-tab" tabindex="0">
+                        <form method="POST" action="{{ route('despesaRecorrente') }}" id="editarDespesaRecorrente" onsubmit="return confirm('Tem certeza que deseja editar essa despesa?');">
+                            @csrf
+                            @method('put')
 
                             <input type="hidden" id="editar_id_despesa_recorrente" name="id">
 
@@ -276,7 +276,7 @@
 
                             <div class="mb-3">
                                 <label for="editar_valor_despesa_recorrente" class="form-label">Valor</label>
-                                <input type="text" id="editar_valor_despesa_recorrente" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="0000.00" data-mask-reverse="true" required>
+                                <input type="text" id="editar_valor_despesa_recorrente" name="valor" placeholder="Valor base da despesa" class="form-control" data-mask="000.000.000.000.000,00" data-mask-reverse="true" required>
                             </div>
 
                             <div class="mb-3">
@@ -306,34 +306,48 @@
                                 <label for="editar_comentario_despesa_recorrente" class="form-label">Comentário</label>
                                 <textarea type="text" id="editar_comentario_despesa_recorrente" name="comentario" placeholder="Comentário" class="form-control" required></textarea>
                             </div>
-
-                        </div>
-
-                        <div class="tab-pane fade" id="arquivos" role="tabpanel" aria-labelledby="arquivos-tab" tabindex="0">
-
-                            <div class="mb-3 mt-4">
-                                <label for="editar_valor_despesa_recorrente" class="form-label">Boleto ou Fatura</label>
-                                <div class="input-group">
-                                    <input type="file" name="boleto" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                </div>
-                            </div>
-
-                            <div class="mb-3 mt-4">
-                                <label for="editar_valor_despesa_recorrente" class="form-label">Comprovante de pagamento</label>
-                                <div class="input-group">
-                                    <input type="file" name="comprovante" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                </div>
-                            </div>
-
-                        </div>
+                        </form>
                     </div>
+                    <div class="tab-pane fade" id="arquivos-despesa-recorrente" role="tabpanel" aria-labelledby="arquivos-tab-despesa-recorrente" tabindex="0">
+                        <table class="table" id="table-despesa-recorrente" style="text-align: center; vertical-align: middle">
+                            <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Formato</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody-despesaRecorrente">
 
+                            <!-- Corpo da tabela; -->
+
+                            </tbody>
+                        </table>
+
+                        <div style="margin-bottom: 14px; display: none;" class="text-center" id="spinner-despesaRecorrente">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 col-3 mx-auto">
+                            <form method="POST" id="addFileDespesaRecorrenteForm" enctype="multipart/form-data">
+                                @csrf
+                                <label for="file-upload-despesa-recorrente" class="custom-file-upload receita btn btn-primary"><i class="fa-solid fa-plus"></i>&nbspAdicionar arquivo</label>
+                                <input id="file-upload-despesa-recorrente" onchange="anexarArquivo(this, 'addFileDespesaRecorrenteForm', 'despesaRecorrente')" name="file" class="input-file" type="file"/>
+                                <input type="hidden" id="id_despesa_recorrente" name="id" value="">
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Editar</button>
-                </div>
-            </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button form="editarDespesaRecorrente" type="submit" class="btn btn-success">Editar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -367,8 +381,10 @@
     })
 </script>
 
-<script type="text/javascript" src="{{ asset('js/functions/editarReceitaModal.js') }}"></script> <!-- Abrir modal de edição de receita recorrente -->
-<script type="text/javascript" src="{{ asset('js/functions/submitDelete.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
+<script type="text/javascript" src="{{ asset('js/functions/editarReceitaModal.js') }}"></script> <!-- Abrir modal de edição de receita -->
+<script type="text/javascript" src="{{ asset('js/functions/editarDespesaRecorrenteModal.js') }}"></script> <!-- Abrir modal de edição de receita -->
+
+<script type="text/javascript" src="{{ asset('js/functions/submitDelete.js') }}"></script> <!-- Função para dar submit na exclusão -->
 
 <script type="text/javascript" src="{{ asset('js/functions/aumentaDiminuiModal.js') }}"></script> <!-- Função para dar submit na exclusão da despesa recorrente -->
 
