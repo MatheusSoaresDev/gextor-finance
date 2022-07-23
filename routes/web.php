@@ -50,6 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
     /* Arquivos despesa recorrente */
     Route::post('/file/despesaRecorrente/', [ArquivoDespesaRecorrenteController::class, 'create']); // Anexa o arquivo da despesa recorrente;
     Route::get('/file/despesaRecorrente/{id}', [ArquivoDespesaRecorrenteController::class, 'get']); // Lista todos os arquivos respectivos à despesa;
-
+    Route::get('/file/despesaRecorrente/view/{id}', [ArquivoDespesaRecorrenteController::class, 'viewFile']); // Abre o arquivo;
+    Route::get('/file/despesaRecorrente/download/{id}', [ArquivoDespesaRecorrenteController::class, 'downloadFile']); // Faz o download do arquivo;
+    Route::put('/file/despesaRecorrente/', [ArquivoDespesaRecorrenteController::class, 'update']); // Altera o tipo do arquivo;
+    Route::delete('/file/despesaRecorrente/', [ArquivoDespesaRecorrenteController::class, 'delete']); // Remove o arquivo do aws e do banco de dados;
 
 });

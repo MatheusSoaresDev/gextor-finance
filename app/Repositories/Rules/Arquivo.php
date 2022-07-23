@@ -48,11 +48,12 @@ class Arquivo
     public static function delete(Receita|DespesaRecorrente $obj, array $data):bool
     {
         $file = $obj->arquivos()->find($data["id_file"]);
+
         if($file->delete()){
             Storage::delete($file->id . '.' . $file->extensao);
         }
 
-        return $file;
+        return true;
     }
 
     /**

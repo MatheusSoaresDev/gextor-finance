@@ -50,8 +50,8 @@ function anexarArquivo(formObj, idForm, tipo){
                         </select>
                     </td>
                     <td>
-                        <a href="/file/receita/view/${response.id}" target="_blank"><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button></a>
-                        <a href="/file/receita/download/${response.id}"><button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button></a>
+                        <a href="/file/${tipo}/view/${response.id}" target="_blank"><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-file"></i></button></a>
+                        <a href="/file/${tipo}/download/${response.id}"><button type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-file-arrow-down"></i></button></a>
                         <button type="button" onclick="removeFile('${id}', '${response.id}', '${tipo}')" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
                     </td>
                 </tr>
