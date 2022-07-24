@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(DespesaRecorrente::class, 'id');
     }
+
+    public function despesas_parceladas()
+    {
+        return $this->hasMany(DespesaParcelada::class, 'id');
+    }
 }

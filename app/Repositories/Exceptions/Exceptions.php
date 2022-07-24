@@ -23,7 +23,7 @@ class Exceptions
             $file = Arquivo::create($this->getObj($data["id"]), $data["file"]);
             DB::commit();
 
-            return Response::json($file, 200);
+            return Response::json($file);
 
         } catch(\Exception $exception){
             DB::rollBack();
@@ -35,7 +35,7 @@ class Exceptions
     {
         try{
             $files = Arquivo::get($this->getObj($id));
-            return Response::json($files, 200);
+            return Response::json($files);
 
         } catch(\Exception $exception){
             return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
@@ -46,7 +46,7 @@ class Exceptions
     {
         try{
             $files = Arquivo::update($this->getObj($data["id_obj"]), $data);
-            return Response::json($files, 200);
+            return Response::json($files);
 
         } catch(\Exception $exception){
             return Response::json(["message" => $exception->getMessage(), "code" => $exception->getCode()], $exception->getCode());
@@ -60,7 +60,7 @@ class Exceptions
             $files = Arquivo::delete($this->getObj($data["id_obj"]), $data);
             DB::commit();
 
-            return Response::json($files, 200);
+            return Response::json($files);
 
         } catch(\Exception $exception){
             DB::rollBack();

@@ -103,10 +103,10 @@
                 <button class="nav-link" id="pills-receita-tab" data-bs-toggle="pill" data-bs-target="#pills-receitas" type="button" role="tab" aria-controls="pills-receitas" aria-selected="true">Receitas</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-despesa-recorrente-tab" data-bs-toggle="pill" data-bs-target="#pills-despesa-recorrente" type="button" role="tab" aria-controls="pills-despesa-recorrente" aria-selected="true">Despesas Recorrentes</button>
+                <button class="nav-link" id="pills-despesa-recorrente-tab" data-bs-toggle="pill" data-bs-target="#pills-despesa-recorrente" type="button" role="tab" aria-controls="pills-despesa-recorrente" aria-selected="true">Despesas Recorrentes</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Despesas Parceladas</button>
+                <button class="nav-link active" id="pills-despesa-parcelada-tab" data-bs-toggle="pill" data-bs-target="#pills-despesa-parcelada" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Despesas Parceladas</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Cartões</button>
@@ -161,9 +161,9 @@
                     </tr>
                     </tbody>
                 </table>
-            </div>
+            </div> <!-- Receitas -->
 
-            <div class="tab-pane fade show active p-4" id="pills-despesa-recorrente" role="tabpanel" aria-labelledby="pills-despesa-recorrente-tab" tabindex="0">
+            <div class="tab-pane fade p-4" id="pills-despesa-recorrente" role="tabpanel" aria-labelledby="pills-despesa-recorrente-tab" tabindex="0">
                 <table class="table" style="text-align: center;">
                     <thead>
                         <tr>
@@ -210,10 +210,33 @@
                     </tr>
                     </tbody>
                 </table>
+            </div> <!-- Despesas Recorrentes -->
+
+            <div class="tab-pane fade p-4 show active" id="pills-despesa-parcelada" role="tabpanel" aria-labelledby="pills-despesa-parcelada-tab" tabindex="0">  <!-- Despesas Parceladas -->
+                <table class="table" style="text-align: center;">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Data</th>
+                        <th>Parcela</th>
+                        <th>Forma de pagamento</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th style="text-align: center;">Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($despesas as $despesa)
+
+                    @endforeach
+                    <tr>
+                        <td colspan="7" style="text-align: center;"><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#criardespesaparceladamodal"><i class="fas fa-plus"></i> &nbspAdicionar</button></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div> <!-- Cartões -->
         </div>
     </div>
 

@@ -2,13 +2,13 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\DespesaRecorrente;
-use App\Repositories\Contracts\DespesaRecorrenteRepositoryInterface;
+use App\Models\DespesaParcelada;
+use App\Repositories\Contracts\DespesaParceladaRepositoryInterface;
 use Illuminate\Support\Facades\Request;
 
-class DespesaRecorrenteRepository extends AbstractRepository implements DespesaRecorrenteRepositoryInterface
+class DespesaParceladaRepository extends AbstractRepository implements DespesaParceladaRepositoryInterface
 {
-    protected $model = DespesaRecorrente::class;
+    protected $model = DespesaParcelada::class;
 
     public function getDespesaPorMes()
     {

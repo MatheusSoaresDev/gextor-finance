@@ -352,6 +352,58 @@
     </div>
 </div>
 
+<div class="modal fade" id="criardespesaparceladamodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smallmodalLabel">Registrar despesa parcelada</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ route('despesaParcelada') }}" id="criarDespesaParcelada">
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="nome_despesa_parcelada" class="form-label">Nome da despesa</label>
+                        <input type="text" class="form-control" name="nome" placeholder="Nome da despesa" id="nome_despesa_parcelada" aria-describedby="emailHelp" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="valor_despesa_parcelada" class="form-label">Valor</label>
+                        <input type="text" id="valor_despesa_parcelada" name="valor_total" placeholder="Valor da despesa" class="form-control" data-mask="000.000.000.000.000,00" data-mask-reverse="true" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="forma_pagamento_despesa_parcelada" class="form-label">Forma de Pagamento</label>
+                        <select name="forma_pagamento" id="forma_pagamento_despesa_parcelada" class="form-control" required>
+                            <option value="">Forma de pagamento</option>
+                            <option value="b">Boleto</option>
+                            <option value="p">Pix</option>
+                            <option value="d">Débito automático</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qtd_parcelas_despesa_parcelada" class="form-label">Quantidade de parcelas</label>
+                        <input type="number" id="qtd_parcelas_despesa_parcelada" name="qtd_parcelas" placeholder="Quantidade de parcelas" min="1" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="comentario_despesa_parcelada" class="form-label">Comentário</label>
+                        <textarea type="text" id="comentario_despesa_parcelada" name="comentario" placeholder="Comentário" class="form-control" required></textarea>
+                    </div>
+
+                    {{ csrf_field() }}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <style>
 
     input[type="file"] {
@@ -367,7 +419,6 @@
 </style>
 
 <!-- Arquivos -->
-
 <script type="text/javascript">
     $.ajaxSetup({
         headers: {

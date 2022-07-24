@@ -20,7 +20,9 @@ class DespesaRecorrenteController extends Controller
 
     public function create(CreateDespesaFixaRequest $request)
     {
-        $despesa = $this->despesaRecorrenteRepository->create($request->all());
+        $data = $request->only(['id', 'nome', 'valor', 'forma_pagamento', 'status', 'data', 'comentário']);
+        $despesa = $this->despesaRecorrenteRepository->create($data);
+
         return self::redirect($despesa, "cadastrar", "home");
     }
 
@@ -28,6 +30,7 @@ class DespesaRecorrenteController extends Controller
     {
         $data = $request->only(['id', 'nome', 'valor', 'forma_pagamento', 'status', 'data', 'comentário']);
         $despesa = $this->despesaRecorrenteRepository->update($data);
+
         return self::redirect($data, "atualizar", "home");
     }
 

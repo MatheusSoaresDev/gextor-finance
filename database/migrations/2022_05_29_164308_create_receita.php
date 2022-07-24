@@ -20,10 +20,12 @@ return new class extends Migration
             $table->decimal('valor');
             $table->integer('status')->default(0);
             $table->string('comentario')->nullable();
-            $table->timestamps();
 
             $table->string('id_user');
             $table->foreign('id_user')->references('id')->on('users');
+
+            $table->timestamps();
+
         });
     }
 

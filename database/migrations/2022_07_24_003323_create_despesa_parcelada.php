@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('despesa_recorrente', function (Blueprint $table) {
+        Schema::create('despesa_parcelada', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nome');
             $table->date('data');
-            $table->decimal('valor');
+            $table->decimal('valor_total');
             $table->string('forma_pagamento');
             $table->boolean('status')->default(0);
+            $table->integer('qtd_parcelas');
             $table->string('comentario')->nullable();
 
             $table->string('id_user');
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('despesa_recorrente');
+        Schema::dropIfExists('despesa_parcelada');
     }
 };

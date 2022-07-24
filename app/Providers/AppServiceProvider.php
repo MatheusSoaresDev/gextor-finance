@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\DespesaParcelada;
 use App\Models\DespesaRecorrente;
 use App\Models\Receita;
+use App\Observers\DespesaParceladaObserver;
 use App\Observers\DespesaRecorrenteObserver;
 use App\Observers\ReceitaObserver;
 use Illuminate\Support\Facades\Schema;
@@ -32,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\ReceitaRepositoryInterface',
             'App\Repositories\Eloquent\ReceitaRepository',
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\DespesaParceladaRepositoryInterface',
+            'App\Repositories\Eloquent\DespesaParceladaRepository',
+        );
     }
 
     /**
@@ -41,8 +48,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        DespesaRecorrente::observe(DespesaRecorrenteObserver::class);
         Receita::observe(ReceitaObserver::class);
+        DespesaRecorrente::observe(DespesaRecorrenteObserver::class);
+        DespesaParcelada::observe(DespesaParceladaObserver::class);
 
         if($this->app->environment('production')) {
             \URL::forceScheme('https');
