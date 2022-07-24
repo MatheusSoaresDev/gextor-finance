@@ -2,10 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-/**
- * @method getMes()
- */
-interface DespesaParceladaRepositoryInterface
+interface ParcelasRepositoryInterface
 {
     public function create(array $data);
     public function get(string $id);

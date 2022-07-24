@@ -33,7 +33,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 Recorrentes
-                                <h5> R$ {{ number_format($despesas->sum('valor'), 2, ',', '.') }} </h5>
+                                <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 Anuais
-                                <h5> R$ {{ number_format($despesas->sum('valor'), 2, ',', '.') }} </h5>
+                                <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 Cartões
-                                <h5> R$ {{ number_format($despesas->sum('valor'), 2, ',', '.') }} </h5>
+                                <h5> R$ {{ number_format($despesasRecorrentes->sum('valor'), 2, ',', '.') }} </h5>
                             </div>
                         </div>
                     </div>
@@ -175,13 +175,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($despesas as $despesa)
+                        @foreach($despesasRecorrentes as $despesaRecorrente)
                             <tr style="vertical-align:middle">
-                                <td><span class="name">{{ $despesa->nome }}</span></td>
-                                <td> @if($despesa->forma_pagamento == 'b') Boleto @elseif($despesa->forma_pagamento == 'p') Pix @elseif($despesa->forma_pagamento == 'd') Débito @endif</td>
-                                <td> R$ {{ number_format($despesa->valor, 2, ',', '.') }} </td>
+                                <td><span class="name">{{ $despesaRecorrente->nome }}</span></td>
+                                <td> @if($despesaRecorrente->forma_pagamento == 'b') Boleto @elseif($despesaRecorrente->forma_pagamento == 'p') Pix @elseif($despesaRecorrente->forma_pagamento == 'd') Débito @endif</td>
+                                <td> R$ {{ number_format($despesaRecorrente->valor, 2, ',', '.') }} </td>
                                 <td>
-                                    @if($despesa->status == 1)
+                                    @if($despesaRecorrente->status == 1)
                                         <span class="badge text-bg-success">Pago</span>
                                     @else
                                         <span class="badge text-bg-secondary">Não Pago</span>
@@ -191,14 +191,14 @@
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
-                                            <li><a class="dropdown-item" onclick="editarDespesaRecorrenteModal({{ $despesa }});">Editar</a></li>
+                                            <li><a class="dropdown-item" onclick="editarDespesaRecorrenteModal({{ $despesaRecorrente }});">Editar</a></li>
 
-                                            <form method="POST" id="formExcluirDespesaRecorrente{{ $despesa->id }}" action="{{ route('deleteDespesaRecorrente', $despesa->id) }}">
+                                            <form method="POST" id="formExcluirDespesaRecorrente{{ $despesaRecorrente->id }}" action="{{ route('deleteDespesaRecorrente', $despesaRecorrente->id) }}">
                                                 @method('DELETE')
                                                 @csrf
-                                                <!--<li><a onclick="submit('{{ $despesa->id }}')" class="dropdown-item" href="#">Excluir</a></li>-->
+                                                <!--<li><a onclick="submit('{{ $despesaRecorrente->id }}')" class="dropdown-item" href="#">Excluir</a></li>-->
 
-                                                <li><a onclick="submitDelete('{{ $despesa->id }}', 'formExcluirDespesaRecorrente{{ $despesa->id }}', 'despesa')" class="dropdown-item" href="#">Excluir</a></li>
+                                                <li><a onclick="submitDelete('{{ $despesaRecorrente->id }}', 'formExcluirDespesaRecorrente{{ $despesaRecorrente->id }}', 'despesa')" class="dropdown-item" href="#">Excluir</a></li>
                                             </form>
                                         </ul>
                                     </div>
@@ -215,23 +215,22 @@
             <div class="tab-pane fade p-4 show active" id="pills-despesa-parcelada" role="tabpanel" aria-labelledby="pills-despesa-parcelada-tab" tabindex="0">  <!-- Despesas Parceladas -->
                 <table class="table" style="text-align: center;">
                     <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Data</th>
-                        <th>Parcela</th>
-                        <th>Forma de pagamento</th>
-                        <th>Valor</th>
-                        <th>Status</th>
-                        <th style="text-align: center;">Ações</th>
-                    </tr>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Parcela</th>
+                            <th>Forma de pagamento</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th style="text-align: center;">Ações</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach($despesas as $despesa)
 
-                    @endforeach
-                    <tr>
-                        <td colspan="7" style="text-align: center;"><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#criardespesaparceladamodal"><i class="fas fa-plus"></i> &nbspAdicionar</button></td>
-                    </tr>
+
+                        <tr>
+                            <td colspan="7" style="text-align: center;"><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#criardespesaparceladamodal"><i class="fas fa-plus"></i> &nbspAdicionar</button></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

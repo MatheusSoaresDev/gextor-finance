@@ -2,6 +2,9 @@
 
 namespace App\Repositories\Contracts;
 
+/**
+ * @method getMes()
+ */
 interface ReceitaRepositoryInterface
 {
     public function create(array $data);

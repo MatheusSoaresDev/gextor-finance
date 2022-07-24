@@ -373,6 +373,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="data_despesa_parcelada" class="form-label">Data do primeiro pagamento</label>
+                        <input type="date" id="data_despesa_parcelada" name="data" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="forma_pagamento_despesa_parcelada" class="form-label">Forma de Pagamento</label>
                         <select name="forma_pagamento" id="forma_pagamento_despesa_parcelada" class="form-control" required>
                             <option value="">Forma de pagamento</option>

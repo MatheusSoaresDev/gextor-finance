@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Contracts\DespesaParceladaRepositoryInterface;
 use App\Repositories\Contracts\DespesaRecorrenteRepositoryInterface;
 use App\Repositories\Contracts\ReceitaRepositoryInterface;
 use Illuminate\Http\Request;
@@ -11,12 +12,17 @@ class HomeController extends Controller
 {
     private DespesaRecorrenteRepositoryInterface $despesaRecorrenteRepository;
     private ReceitaRepositoryInterface $receitaRepository;
+    private DespesaParceladaRepositoryInterface $despesaParceladaRepository;
 
-    public function __construct(DespesaRecorrenteRepositoryInterface $despesaRecorrenteRepository, ReceitaRepositoryInterface $receitaRepository)
+    public function __construct(DespesaRecorrenteRepositoryInterface $despesaRecorrenteRepository,
+                                ReceitaRepositoryInterface $receitaRepository,
+                                DespesaParceladaRepositoryInterface $despesaParceladaRepository)
     {
         $this->middleware('auth');
+
         $this->despesaRecorrenteRepository = $despesaRecorrenteRepository;
         $this->receitaRepository = $receitaRepository;
+        $this->despesaParceladaRepository = $despesaParceladaRepository;
     }
 
     /**
@@ -27,12 +33,15 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if(Auth::check()){
-            $despesas = $this->despesaRecorrenteRepository->getDespesaPorMes();
-            $receitas = $this->receitaRepository->getReceitaPorMes();
+            $receitas = $this->receitaRepository->getMes();
+            $despesasRecorrentes = $this->despesaRecorrenteRepository->getMes();
+            //$despesasParceladas = $this->despesaParceladaRepository->getParcelasMes();
+
 
             return view('home', [
-                "despesas" => $despesas,
-                "receitas" => $receitas
+                "receitas" => $receitas,
+                "despesasRecorrentes" => $despesasRecorrentes,
+                //"despesasParceladas" => $despesasParceladas
             ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');

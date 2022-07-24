@@ -2,6 +2,9 @@
 
 namespace App\Repositories\Contracts;
 
+/**
+ * @method getMes()
+ */
 interface DespesaRecorrenteRepositoryInterface
 {
     public function create(array $data);

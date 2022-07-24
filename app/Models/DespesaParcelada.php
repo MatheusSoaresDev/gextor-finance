@@ -20,4 +20,9 @@ class DespesaParcelada extends Model
     {
         return $this->hasOne(User::class, 'id');
     }
+
+    public function parcelas()
+    {
+        return $this->hasMany(Parcela::class, 'id_despesa_parcelada');
+    }
 }

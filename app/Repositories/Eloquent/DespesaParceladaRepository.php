@@ -4,17 +4,16 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\DespesaParcelada;
 use App\Repositories\Contracts\DespesaParceladaRepositoryInterface;
-use Illuminate\Support\Facades\Request;
+use App\Repositories\Contracts\ParcelasRepositoryInterface;
 
 class DespesaParceladaRepository extends AbstractRepository implements DespesaParceladaRepositoryInterface
 {
     protected $model = DespesaParcelada::class;
 
-    public function getDespesaPorMes()
+    public function getParcelasMes()
     {
-        return $this->all()
-            ->whereMonth('data', Request::session()->get('data')['mes'])
-            ->whereYear('data', Request::session()->get('data')['ano'])
-            ->get();
+        $despesas = $this->all()->get();
+
+        //foreach ()
     }
 }

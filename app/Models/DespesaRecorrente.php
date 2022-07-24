@@ -23,7 +23,7 @@ class DespesaRecorrente extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class, 'id');
+        return $this->hasOne(User::class, 'id');
     }
 
     public function arquivos()

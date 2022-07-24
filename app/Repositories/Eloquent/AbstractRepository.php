@@ -4,9 +4,12 @@ namespace App\Repositories\Eloquent;
 
 use App\Repositories\Rules\Arquivo;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\GetMes;
 
 abstract class AbstractRepository
 {
+    use GetMes;
+
     protected $model;
 
     public function __construct()
