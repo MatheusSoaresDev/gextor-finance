@@ -22,16 +22,15 @@ class DespesaParceladaObserver
         for($i=0; $i<$despesaParcelada->qtd_parcelas; $i++){
             $despesaParcelada->parcelas()->create([
                 "parcela" => $i+1,
-                "data" => $this->insertData($despesaParcelada->data, $i+1),
+                "data" => self::insertData($despesaParcelada->data, $i),
                 "valor" => $despesaParcelada->valor_total / $despesaParcelada->qtd_parcelas,
             ]);
         }
     }
 
-    private function insertData(string $dataInformada, int $indice)
+    private static function insertData(string $dataInformada, int $indice)
     {
         $date = new DateTime($dataInformada);
-        $date->format("Y-m-d");
         $date->add(new DateInterval("P${indice}M"));
 
         return $date;
@@ -39,7 +38,6 @@ class DespesaParceladaObserver
 
     public function creating(DespesaParcelada $despesaParcelada)
     {
-        //$despesaParcelada->data = ((new \DateTime(''))->setDate(Request::session()->get('data')['ano'], Request::session()->get('data')['mes'], '01'))->format("Y-m-d");
         $despesaParcelada->id_user = Auth::id();
         $despesaParcelada->valor_total = str_replace([','],['.'], $despesaParcelada->valor_total);
     }

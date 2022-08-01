@@ -217,7 +217,7 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Data</th>
+                            <th>Vencimento</th>
                             <th>Parcela</th>
                             <th>Forma de pagamento</th>
                             <th>Valor</th>
@@ -227,6 +227,25 @@
                     </thead>
                     <tbody>
 
+                    @foreach($despesasParceladas as $despesaParcelada)
+                        @if(count($despesaParcelada->parcelas) > 0)
+                            <tr style="vertical-align:middle">
+                                <td><span class="name">{{ $despesaParcelada->nome }}</span></td>
+                                <td><span class="name">{{ $despesaParcelada->data }}</span></td>
+                                <td><span class="name">{{ $despesaParcelada->parcelas->first()->parcela}}</span></td>
+                                <td> @if($despesaParcelada->forma_pagamento == 'b') Boleto @elseif($despesaParcelada->forma_pagamento == 'p') Pix @elseif($despesaParcelada->forma_pagamento == 'd') Débito @endif</td>
+                                <td> R$ {{ number_format($despesaParcelada->parcelas->first()->valor, 2, ',', '.') }} </td>
+                                <td><span class="name">{{ $despesaParcelada->parcelas->first()->status}}</span></td>
+                                <td style="text-align: center;">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="cursor: pointer;">
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
 
                         <tr>
                             <td colspan="7" style="text-align: center;"><button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#criardespesaparceladamodal"><i class="fas fa-plus"></i> &nbspAdicionar</button></td>

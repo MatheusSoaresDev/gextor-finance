@@ -33,15 +33,16 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if(Auth::check()){
+            //$this->despesaParceladaRepository->getParcelasMes();
+
             $receitas = $this->receitaRepository->getMes();
             $despesasRecorrentes = $this->despesaRecorrenteRepository->getMes();
-            //$despesasParceladas = $this->despesaParceladaRepository->getParcelasMes();
-
+            $despesasParceladas = $this->despesaParceladaRepository->getParcelasMes();
 
             return view('home', [
                 "receitas" => $receitas,
                 "despesasRecorrentes" => $despesasRecorrentes,
-                //"despesasParceladas" => $despesasParceladas
+                "despesasParceladas" => $despesasParceladas
             ]);
         }
         return redirect("login")->withSuccess('You are not allowed to access');

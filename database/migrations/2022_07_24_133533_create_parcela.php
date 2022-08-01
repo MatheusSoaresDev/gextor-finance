@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('data');
             $table->decimal('valor');
             $table->string('comentario')->nullable();
+            $table->boolean('status')->default(0);
 
             $table->string('id_despesa_parcelada');
             $table->foreign('id_despesa_parcelada')->references('id')->on('despesa_parcelada');

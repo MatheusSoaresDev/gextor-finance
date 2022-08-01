@@ -18,6 +18,6 @@ class Parcela extends Model
 
     public function despesaParcelada()
     {
-        return $this->belongsTo(DespesaParcelada::class, 'id');
+        return $this->belongsTo(DespesaParcelada::class);
     }
 }

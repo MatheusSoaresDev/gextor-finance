@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('data');
             $table->decimal('valor_total');
             $table->string('forma_pagamento');
-            $table->boolean('status')->default(0);
             $table->integer('qtd_parcelas');
             $table->string('comentario')->nullable();
 
